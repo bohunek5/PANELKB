@@ -77,10 +77,10 @@
             renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
             document.body.appendChild(renderer.domElement);
 
-            // --- COLUMN SYSTEM ---
-            const colCount = 60; // Total vertical columns
+            // --- REFINED COLUMN SYSTEM ---
+            const colCount = 80;
             const textures = [];
-            for (let i = 0; i < 40; i++) {
+            for (let i = 0; i < 50; i++) {
                 const canvas = document.createElement('canvas');
                 const ctx = canvas.getContext('2d');
                 canvas.width = 64; canvas.height = 64;
@@ -92,12 +92,14 @@
             }
 
             for (let i = 0; i < colCount; i++) {
-                const r = 2 + Math.random() * 10;
+                const r = 1.5 + Math.random() * 10;
                 const a = Math.random() * Math.PI * 2;
                 const x = Math.cos(a) * r;
                 const z = Math.sin(a) * r;
 
-                const symbolsInCol = 15 + Math.floor(Math.random() * 20);
+                // Each column has its own speed for solid movement
+                const colSpeed = 0.02 + Math.random() * 0.04;
+                const symbolsInCol = 10 + Math.floor(Math.random() * 15);
                 const colSymbols = [];
 
                 for (let j = 0; j < symbolsInCol; j++) {
@@ -105,19 +107,16 @@
                         map: textures[Math.floor(Math.random() * textures.length)],
                         color: 0x00ff80,
                         transparent: true,
-                        opacity: 0.2 + Math.random() * 0.5
+                        opacity: 0.2 + (j / symbolsInCol) * 0.6 // Gradient in column opacity
                     });
                     const sprite = new THREE.Sprite(material);
-                    sprite.position.x = x;
-                    sprite.position.z = z;
-                    sprite.position.y = (j / symbolsInCol) * 20 - 10;
+                    sprite.position.set(x, (j * 0.8) - (symbolsInCol * 0.4), z);
                     sprite.scale.set(0.35, 0.35, 1);
                     scene.add(sprite);
 
                     colSymbols.push({
                         mesh: sprite,
-                        offsetY: sprite.position.y,
-                        speed: 0.02 + Math.random() * 0.03
+                        yOffset: (j * 0.8) - (symbolsInCol * 0.4)
                     });
                 }
 
@@ -126,6 +125,8 @@
                     radius: r,
                     angle: a,
                     symbols: colSymbols,
+                    speed: colSpeed,
+                    yPos: Math.random() * 20 - 10,
                     vibrateOffset: Math.random() * Math.PI * 2
                 });
             }
@@ -163,23 +164,30 @@
             requestAnimationFrame(animate);
             const delta = clock.getElapsedTime();
 
-            columns.forEach((col, idx) => {
+            columns.forEach((col) => {
+                // 1. UPDATE COLUMN BASE POSITION
+                col.yPos += col.speed;
+                if (col.yPos > 14) col.yPos = -14;
+
                 const time = delta * 0.4;
-                const vibX = Math.sin(time * 3 + col.vibrateOffset) * (isSpeaking ? 0.6 : 0.08);
-                const vibZ = Math.cos(time * 3 + col.vibrateOffset) * (isSpeaking ? 0.6 : 0.08);
+                const vibX = Math.sin(time * 3 + col.vibrateOffset) * (isSpeaking ? 0.7 : 0.08);
+                const vibZ = Math.cos(time * 3 + col.vibrateOffset) * (isSpeaking ? 0.7 : 0.08);
 
                 col.symbols.forEach((s) => {
-                    // 1. VERTICAL FLOW
-                    s.mesh.position.y += s.speed;
-                    if (s.mesh.position.y > 10) s.mesh.position.y = -10;
+                    // Apply vertical flow + character offset
+                    let finalY = col.yPos + s.yOffset;
+                    if (finalY > 12) finalY -= 24;
+                    if (finalY < -12) finalY += 24;
 
-                    // 2. COLUMN POSITIONING
-                    const colorPos = (s.mesh.position.y + 10) / 20;
+                    s.mesh.position.y = finalY;
+
+                    // 2. COLUMN COLOR PROGRESSION
+                    const colorPos = (finalY + 12) / 24;
                     let targetHue, targetSat, targetLight;
 
                     if (colorPos < 0.5) {
                         targetHue = 0.35; targetSat = 1.0;
-                        targetLight = THREE.MathUtils.lerp(0.2, 0.5, colorPos * 2);
+                        targetLight = THREE.MathUtils.lerp(0.15, 0.5, colorPos * 2);
                     } else {
                         targetHue = THREE.MathUtils.lerp(0.35, 0.45, (colorPos - 0.5) * 2);
                         targetSat = 0.8; targetLight = THREE.MathUtils.lerp(0.5, 0.7, (colorPos - 0.5) * 2);
@@ -187,26 +195,26 @@
 
                     if (isSpeaking) {
                         const wave = Math.sin(delta * 5 - col.radius * 0.7);
-                        const expansion = 1 + (wave * 0.25) + 0.3;
+                        const expansion = 1 + (wave * 0.3) + 0.3;
 
                         s.mesh.position.x = Math.cos(col.angle) * col.radius * expansion + vibX;
                         s.mesh.position.z = Math.sin(col.angle) * col.radius * expansion + vibZ;
 
                         const flash = Math.max(0, Math.sin(delta * 8 + col.vibrateOffset));
                         s.mesh.material.color.setHSL(targetHue, targetSat, targetLight + flash * 0.35);
-                        s.mesh.material.opacity = 0.6 + flash * 0.4;
-                        s.mesh.scale.set(0.45, 0.45, 1);
+                        s.mesh.material.opacity = 0.5 + flash * 0.5;
+                        s.mesh.scale.set(0.48, 0.48, 1);
                     } else {
                         s.mesh.position.x = THREE.MathUtils.lerp(s.mesh.position.x, Math.cos(col.angle) * col.radius + vibX, 0.05);
                         s.mesh.position.z = THREE.MathUtils.lerp(s.mesh.position.z, Math.sin(col.angle) * col.radius + vibZ, 0.05);
                         s.mesh.material.color.setHSL(targetHue, targetSat, targetLight);
-                        s.mesh.material.opacity = THREE.MathUtils.lerp(s.mesh.material.opacity, 0.3, 0.1);
+                        s.mesh.material.opacity = THREE.MathUtils.lerp(s.mesh.material.opacity, s.mesh.material.opacity, 0.1);
                         s.mesh.scale.set(0.35, 0.35, 1);
                     }
                 });
             });
 
-            camera.position.x = Math.sin(delta * 0.15) * 2;
+            camera.position.x = Math.sin(delta * 0.12) * 1.5;
             camera.lookAt(0, 0, 0);
 
             renderer.render(scene, camera);
