@@ -204,6 +204,8 @@
 
         let scene, camera, renderer, columns = [];
         let isSpeaking = false;
+        let systemStatus = 'idle'; // 'idle', 'processing', 'alert', 'critical'
+        let systemPulse = 0;
         let clock = new THREE.Clock();
 
         const charset = "日Hｱｲｳｴｵｶｷｸｹｺｻｼｽｾｿﾀﾁﾂﾃﾄﾅﾆﾇﾈﾉﾊﾋﾌﾍﾎﾏﾐﾑﾒﾓﾔﾕﾖﾗﾘﾙﾚﾛﾜﾝ23456789ZOSIA";
@@ -282,27 +284,34 @@
 
         async function checkVoice() {
             try {
-                // TRY SYNCED BRAIN (MAC IP or LOCALHOST)
                 let target = brainUrl.includes(':') ? brainUrl : brainUrl + ':7777';
                 const r = await fetch('http://' + target + '/speaking', { signal: AbortSignal.timeout(500) });
                 const data = await r.json();
                 isSpeaking = data.speaking;
+
+                // ALSO CHECK SYSTEM STATUS DURING VOICE POLL
+                if (data.status) systemStatus = data.status;
+                if (data.pulse) systemPulse = data.pulse;
             } catch (e) {
-                // FALLBACK TO BROWSER NATIVE
                 isSpeaking = window.speechSynthesis.speaking;
+                systemStatus = 'idle';
             }
 
             const st = document.getElementById('status');
             const dot = st.querySelector('.dot');
+            const label = document.getElementById('statusLabel');
+
             if (isSpeaking) {
                 st.classList.add('speaking');
                 dot.style.background = "#00ff8c";
                 dot.style.boxShadow = "0 0 15px #00ff8c";
             } else {
                 st.classList.remove('speaking');
-                dot.style.background = "#00220a";
+                dot.style.background = systemStatus === 'idle' ? "#00220a" : (systemStatus === 'alert' ? "#ff3300" : "#ffcc00");
                 dot.style.boxShadow = "none";
             }
+
+            label.innerText = `KB-CORE: ${systemStatus.toUpperCase()}`;
         }
         setInterval(checkVoice, 100);
 
@@ -330,12 +339,22 @@
                     const colorPos = (finalY + 12) / 24;
                     let targetHue, targetSat, targetLight;
 
-                    if (colorPos < 0.5) {
-                        targetHue = 0.35; targetSat = 1.0;
-                        targetLight = THREE.MathUtils.lerp(0.15, 0.5, colorPos * 2);
+                    // DYNAMIC THEME BASED ON SYSTEM STATUS
+                    if (systemStatus === 'alert') {
+                        targetHue = 0.0; targetSat = 1.0; targetLight = 0.5; // Warning Red
+                    } else if (systemStatus === 'processing') {
+                        targetHue = 0.12; targetSat = 1.0; targetLight = 0.6; // Processing Gold
+                    } else if (systemStatus === 'critical') {
+                        targetHue = 0.75; targetSat = 1.0; targetLight = 0.3; // Critical Indigo
                     } else {
-                        targetHue = THREE.MathUtils.lerp(0.35, 0.45, (colorPos - 0.5) * 2);
-                        targetSat = 0.8; targetLight = THREE.MathUtils.lerp(0.5, 0.7, (colorPos - 0.5) * 2);
+                        // Standard Matrix Green Theme
+                        if (colorPos < 0.5) {
+                            targetHue = 0.35; targetSat = 1.0;
+                            targetLight = THREE.MathUtils.lerp(0.15, 0.5, colorPos * 2);
+                        } else {
+                            targetHue = THREE.MathUtils.lerp(0.35, 0.45, (colorPos - 0.5) * 2);
+                            targetSat = 0.8; targetLight = THREE.MathUtils.lerp(0.5, 0.7, (colorPos - 0.5) * 2);
+                        }
                     }
 
                     if (isSpeaking) {
@@ -349,13 +368,19 @@
                         const glowPulse = Math.sin(delta * 4 + col.vibrateOffset) * 0.5 + 0.5;
                         s.mesh.material.color.setHSL(targetHue, targetSat, targetLight + glowPulse * 0.2);
                         s.mesh.material.opacity = 0.4 + glowPulse * 0.4;
-                        s.mesh.scale.set(0.35 + breathe * 0.1, 0.35 + breathe * 0.1, 1);
+
+                        let scaleBase = 0.35 + breathe * 0.1;
+                        if (systemStatus === 'processing') scaleBase *= 1.4;
+                        s.mesh.scale.set(scaleBase, scaleBase, 1);
                     } else {
                         s.mesh.position.x = THREE.MathUtils.lerp(s.mesh.position.x, Math.cos(col.angle) * col.radius + vibX, 0.05);
                         s.mesh.position.z = THREE.MathUtils.lerp(s.mesh.position.z, Math.sin(col.angle) * col.radius + vibZ, 0.05);
                         s.mesh.material.color.setHSL(targetHue, targetSat, targetLight);
                         s.mesh.material.opacity = THREE.MathUtils.lerp(s.mesh.material.opacity, 0.25, 0.1);
-                        s.mesh.scale.set(0.28, 0.28, 1);
+
+                        let scaleBase = 0.28;
+                        if (systemStatus === 'processing') scaleBase *= 1.2;
+                        s.mesh.scale.set(scaleBase, scaleBase, 1);
                     }
                 });
             });
