@@ -119,6 +119,7 @@
             margin-top: 3rem;
             box-shadow: var(--shadow);
             border: 1px solid rgba(0, 31, 63, 0.02);
+            position: relative;
         }
 
         .module-label {
@@ -162,7 +163,7 @@
         }
 
         p {
-            font-size: 1.1rem;
+            font-size: 1.15rem;
             margin-bottom: 1.5rem;
             color: #444;
         }
@@ -174,7 +175,7 @@
         }
 
         li {
-            font-size: 1.1rem;
+            font-size: 1.15rem;
             position: relative;
             padding-left: 2.5rem;
             margin-bottom: 0.8rem;
@@ -205,7 +206,7 @@
         /* Specialized Grids */
         .feature-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
             gap: 1.5rem;
             margin: 2rem 0;
         }
@@ -228,7 +229,7 @@
             margin-bottom: 0.5rem;
             color: var(--prescot-navy);
             font-family: 'Montserrat', sans-serif;
-            font-size: 1rem;
+            font-size: 1.1rem;
         }
 
         /* Tags */
@@ -245,7 +246,7 @@
             padding: 0.6rem 1.4rem;
             border-radius: 12px;
             font-weight: 700;
-            font-size: 0.95rem;
+            font-size: 1rem;
             text-transform: uppercase;
         }
 
@@ -257,11 +258,11 @@
         .quote-box {
             background: #fff8f5;
             border-radius: 16px;
-            padding: 2rem;
+            padding: 2.5rem;
             border-left: 8px solid var(--prescot-orange);
             margin: 2.5rem 0;
             font-weight: 600;
-            font-size: 1.2rem;
+            font-size: 1.25rem;
             color: var(--prescot-navy);
         }
 
@@ -276,7 +277,7 @@
         /* Product Cards */
         .product-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 2rem;
             margin-top: 3rem;
         }
@@ -288,45 +289,35 @@
             border-radius: 20px;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
             position: relative;
-            overflow: hidden;
-        }
-
-        .product-card h4 {
-            margin-top: 0;
-            margin-bottom: 1rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
         }
 
         .warranty-tag {
             font-size: 0.8rem;
-            background: #001f3f;
+            background: var(--prescot-navy);
             color: white;
             padding: 0.3rem 0.8rem;
             border-radius: 6px;
         }
 
-        /* Footer and Summary */
+        /* Summary */
         .summary-block {
             background: var(--prescot-navy);
             color: white;
             padding: 4rem;
             border-radius: var(--radius);
-            text-align: center;
             margin-top: 5rem;
         }
 
         .summary-block h2 {
             color: white;
-            margin-bottom: 1.5rem;
+            margin-bottom: 2rem;
+            border-bottom: 4px solid var(--prescot-orange);
+            display: inline-block;
         }
 
         .summary-block p {
             color: #d1d8df;
-            font-size: 1.3rem;
-            max-width: 800px;
-            margin: 0 auto;
+            margin-bottom: 1.5rem;
         }
 
         footer {
@@ -366,7 +357,6 @@
     <div class="container">
 
         <header>
-            <span class="pre-title">Dokumentacja Szkoleniowa</span>
             <h1>SZKOLENIE PRODUKTOWO-SPRZEDAŻOWE</h1>
             <div class="plan-info">PRESCOT LED PLAN 1 Fundamenty i Produkty Główne (Wdrożenie Techniczno-Produktowe)
             </div>
@@ -386,37 +376,27 @@
                 <li>niezależność od globalnych zatorów w transporcie z Azji,</li>
                 <li>możliwość customizacji: cięcie taśm na wymiar, lutowanie przewodów, konfekcjonowanie gotowych
                     modułów montażowych.</li>
-                <li>najwyższa jakość produktów, stała dostępność magazynowa i terminowość dostaw.</li>
+                <li>jakością produktów</li>
+                <li>dostępnością magazynową</li>
+                <li>terminowością dostaw</li>
             </ul>
 
             <h3>DYSTRYBUCJA</h3>
             <p>Prescot współpracuje z czołowymi producentami komponentów oświetleniowych:</p>
-            <div class="feature-grid">
-                <div class="feature-item">
-                    <strong>ELBA Lighting Technology</strong>
-                    <p style="font-size: 0.95rem; margin: 0;">profesjonalne oprawy komercyjne i przemysłowe</p>
-                </div>
-                <div class="feature-item">
-                    <strong>KLUŚ</strong>
-                    <p style="font-size: 0.95rem; margin: 0;">profile aluminiowe premium do systemów LED</p>
-                </div>
-                <div class="feature-item">
-                    <strong>MiBoxer / Mi-Light</strong>
-                    <p style="font-size: 0.95rem; margin: 0;">inteligentne systemy sterowania oświetleniem</p>
-                </div>
-                <div class="feature-item">
-                    <strong>Scharfer</strong>
-                    <p style="font-size: 0.95rem; margin: 0;">profesjonalne zasilacze LED</p>
-                </div>
-            </div>
+            <ul class="bullet">
+                <li>ELBA Lighting Technology – profesjonalne oprawy komercyjne i przemysłowe</li>
+                <li>KLUŚ – profile aluminiowe premium do systemów LED</li>
+                <li>MiBoxer / Mi-Light – inteligentne systemy sterowania oświetleniem</li>
+                <li>Scharfer – profesjonalne zasilacze LED</li>
+            </ul>
 
             <p>Dzięki temu Prescot oferuje pełne systemy oświetleniowe, obejmujące:</p>
-            <div class="tag-container">
-                <span class="tag">źródło światła</span>
-                <span class="tag">zasilanie</span>
-                <span class="tag">sterowanie</span>
-                <span class="tag">system montażowy</span>
-            </div>
+            <ul class="check">
+                <li>źródło światła</li>
+                <li>zasilanie</li>
+                <li>sterowanie</li>
+                <li>system montażowy</li>
+            </ul>
 
             <div class="quote-box">
                 Prescot nie jest klasyczną hurtownią. Firma działa jako pracownia projektowa oświetlenia, która
@@ -433,8 +413,7 @@
                 <li>krótsze terminy realizacji</li>
                 <li>brak ryzyka opóźnień inwestycyjnych</li>
             </ul>
-            <p style="font-weight: 700; color: var(--prescot-navy);">W branży budowlanej czas oznacza pieniądz. Prescot
-                minimalizuje ryzyko przestojów na budowie.</p>
+            <p>W branży budowlanej czas oznacza pieniądz. Prescot minimalizuje ryzyko przestojów na budowie.</p>
 
             <h4>Customizacja – rozwiązania szyte na miarę</h4>
             <p>Prescot wykracza poza standardową sprzedaż produktów z półki.</p>
@@ -479,18 +458,9 @@
             <p>W topowych seriach Prescot stosowane jest PCB 4oz, czyli podłoże z czterouncjową warstwą miedzi.</p>
             <p>Tak gruba warstwa miedzi pełni dwie funkcje:</p>
 
-            <div class="feature-grid">
-                <div class="feature-item" style="border-top: 4px solid var(--prescot-orange);">
-                    <strong>Autostrada energetyczna</strong>
-                    <p style="font-size: 0.95rem; margin: 0;">Minimalizuje spadki napięcia na długich odcinkach taśmy.
-                    </p>
-                </div>
-                <div class="feature-item" style="border-top: 4px solid var(--prescot-orange);">
-                    <strong>Radiator termiczny</strong>
-                    <p style="font-size: 0.95rem; margin: 0;">Skutecznie odprowadza ciepło z diod LED, co znacząco
-                        wydłuża ich żywotność.</p>
-                </div>
-            </div>
+            <p><strong>Autostrada energetyczna</strong><br>Minimalizuje spadki napięcia na długich odcinkach taśmy.</p>
+            <p><strong>Radiator termiczny</strong><br>Skutecznie odprowadza ciepło z diod LED, co znacząco wydłuża ich
+                żywotność.</p>
 
             <p>W praktyce oznacza to, że:</p>
             <ul class="bullet">
@@ -499,7 +469,7 @@
                 <li>instalacja działa stabilnie przez wiele lat.</li>
             </ul>
 
-            <h4>Selekcja diod (binning)</h4>
+            <h3>Selekcja diod (binning)</h3>
             <p>Prescot stosuje emitery od globalnych producentów klasy Tier 1:</p>
             <ul class="bullet">
                 <li>OSRAM</li>
@@ -514,7 +484,7 @@
                 <li>stabilne parametry barwy światła.</li>
             </ul>
 
-            <h4>Technologia OneCut</h4>
+            <h3>Technologia OneCut</h3>
             <p>W wielu modelach taśm Prescot możliwe jest cięcie modułów co 1 cm.</p>
             <p>To ogromna przewaga w instalacjach architektonicznych i meblowych.</p>
             <p>Dzięki temu instalator może:</p>
@@ -525,139 +495,244 @@
             </ul>
 
             <h3>Flagowe serie taśm Prescot</h3>
+            <h4>Seria DELUX PRO (7 lat gwarancji)</h4>
+            <p>Jest to jedna z najbardziej zaawansowanych serii w ofercie Prescot.</p>
+            <p>Charakterystyczne cechy:</p>
+            <ul class="bullet">
+                <li>PCB 4oz</li>
+                <li>bardzo wysoka stabilność pracy</li>
+                <li>najwyższa trwałość instalacji</li>
+            </ul>
+            <p>Dostępne zagęszczenia diod:<br><strong>126 LED/m</strong><br><strong>180 LED/m</strong></p>
+            <p>Tak duża liczba diod pozwala uzyskać niemal idealnie jednolitą linię światła.</p>
+            <p>Seria Delux PRO jest często stosowana w:</p>
+            <ul class="bullet">
+                <li>meblarstwie premium</li>
+                <li>architekturze wnętrz</li>
+                <li>oświetleniu liniowym sufitów</li>
+                <li>witrynach sklepowych.</li>
+            </ul>
 
-            <div class="product-grid">
-                <div class="product-card">
-                    <h4>SERIA DELUX PRO <span class="warranty-tag">7 lat gwarancji</span></h4>
-                    <p>Zaawansowana flota: PCB 4oz, stabilna praca, wysoka trwałość.</p>
-                    <p>Warianty: 126 LED/m i 180 LED/m (idealna linia światła).</p>
-                </div>
-                <div class="product-card">
-                    <h4>Low Brightness</h4>
-                    <p>Moc ok. 1.6W / metr. Podświetlenie cokołów, oświetlenie orientacyjne.</p>
-                </div>
-                <div class="product-card">
-                    <h4>TRUE COLOR <span class="warranty-tag">7 lat gwarancji</span></h4>
-                    <p>CRI ≥97. Wierne odwzorowanie barw. Galerie, butiki, jubiler.</p>
-                </div>
-                <div class="product-card" style="border-top: 5px solid #d35400;">
-                    <h4>PRESCOT BREAD <span class="warranty-tag" style="background: #d35400;">5 lat gwarancji</span>
-                    </h4>
-                    <p>Barwa 2500K "Złota skórka". Podkreśla kolor wypieków.</p>
-                </div>
-            </div>
+            <h4>Delux PRO Low Brightness</h4>
+            <p>Specjalna wersja o bardzo niskiej mocy: <strong>około 1.6W / metr</strong></p>
+            <p>Zastosowanie:</p>
+            <ul class="bullet">
+                <li>podświetlenie cokołów meblowych</li>
+                <li>oświetlenie orientacyjne</li>
+                <li>nisze dekoracyjne</li>
+                <li>dyskretne linie światła.</li>
+            </ul>
+
+            <h4>Seria DELUX HIGH BRIGHTNESS (7 lat gwarancji)</h4>
+            <p>Taśmy o bardzo wysokim strumieniu świetlnym. Najczęściej wykorzystują diody: <strong>SMD4014</strong></p>
+            <p>Parametry:</p>
+            <ul class="bullet">
+                <li>wysoka moc</li>
+                <li>CRI 90</li>
+                <li>duży strumień świetlny</li>
+            </ul>
+            <p>Zastosowanie:</p>
+            <ul class="bullet">
+                <li>oświetlenie główne</li>
+                <li>witryny sklepowe</li>
+                <li>ciągi komunikacyjne</li>
+                <li>półki ekspozycyjne.</li>
+            </ul>
+
+            <h4>Seria DELUX SLIM (7 lat gwarancji)</h4>
+            <p>Ultra-wąskie taśmy LED. Szerokość PCB: <strong>4 mm</strong></p>
+            <p>Pozwalają na montaż tam, gdzie standardowe taśmy (8–10 mm) nie mieszczą się.</p>
+            <p>Idealne do:</p>
+            <ul class="bullet">
+                <li>mikrofrezów meblowych</li>
+                <li>krawędzi szkła</li>
+                <li>wąskich profili LED.</li>
+            </ul>
+
+            <h4>Seria DELUX TRUE COLOR (7 lat gwarancji)</h4>
+            <p>Taśmy o najwyższym współczynniku oddawania barw. CRI: <strong>≥97</strong></p>
+            <p>Światło bardzo wiernie odwzorowuje kolory.</p>
+            <p>Zastosowanie:</p>
+            <ul class="bullet">
+                <li>galerie sztuki</li>
+                <li>butiki odzieżowe</li>
+                <li>salony jubilerskie</li>
+                <li>ekspozycje premium.</li>
+            </ul>
+
+            <h4>Seria PRESCOT BREAD (5 lat gwarancji)</h4>
+            <p>Specjalistyczna taśma zaprojektowana dla branży piekarniczej. Barwa światła: <strong>2500K – "Złota
+                    skórka"</strong></p>
+            <p>Podkreśla ciepłe barwy pieczywa:</p>
+            <ul class="bullet">
+                <li>brązy</li>
+                <li>złote odcienie</li>
+                <li>naturalne kolory wypieków.</li>
+            </ul>
+            <p>Warianty:</p>
+            <p><strong>70 LED/m</strong><br>Do zamkniętych regałów – minimalna emisja ciepła.</p>
+            <p><strong>160 LED/m</strong><br>Do głównych lad sprzedażowych.</p>
+
+            <h4>Seria PREMIUM (5 lat gwarancji)</h4>
+            <p>Uniwersalna seria taśm LED obejmująca bardzo szeroki zakres zastosowań.</p>
+            <p>Dostępne technologie:</p>
+            <ul class="bullet">
+                <li>Mono</li>
+                <li>RGB</li>
+                <li>RGBW</li>
+                <li>RGBCCT</li>
+            </ul>
+            <p>Dostępne napięcia:</p>
+            <ul class="bullet">
+                <li>12V</li>
+                <li>24V</li>
+            </ul>
+            <p><strong>Premium RGB:</strong> Taśmy wielokolorowe do instalacji dekoracyjnych.</p>
+            <p><strong>Premium RGBW:</strong> Połączenie światła białego z kolorami RGB.</p>
+            <p><strong>Premium RGBCCT</strong> (Najbardziej zaawansowana wersja):</p>
+            <ul class="bullet">
+                <li>pełna paleta RGB</li>
+                <li>regulacja temperatury bieli</li>
+                <li>płynna zmiana barwy światła.</li>
+            </ul>
+            <p><strong>Premium S-Shape</strong> (Elastyczna taśma):</p>
+            <ul class="bullet">
+                <li>reklama świetlna</li>
+                <li>litery 3D</li>
+                <li>instalacje dekoracyjne.</li>
+            </ul>
 
             <h3>Taśmy COB (Chip On Board)</h3>
-            <p>Technologia COB pozwala uzyskać idealnie jednolitą linię światła (bez widocznych punktów):</p>
-            <div class="feature-grid">
-                <div class="feature-item"><strong>COB MONO</strong>
-                    <p style="font-size: 0.8rem;">2700K-6500K. Jednokolorowe.</p>
-                </div>
-                <div class="feature-item"><strong>COB CCT</strong>
-                    <p style="font-size: 0.8rem;">Regulacja temperatury bieli.</p>
-                </div>
-                <div class="feature-item"><strong>COB DIGITAL</strong>
-                    <p style="font-size: 0.8rem;">Programowalne animacje i efekty.</p>
-                </div>
-                <div class="feature-item"><strong>COB Nano IP67</strong>
-                    <p style="font-size: 0.8rem;">Wodoodporna powłoka (nie żółknie).</p>
-                </div>
-            </div>
+            <p>Technologia COB pozwala uzyskać idealnie jednolitą linię światła. Diody są pokryte warstwą luminoforu,
+                dzięki czemu:</p>
+            <ul class="bullet">
+                <li>nie widać pojedynczych punktów</li>
+                <li>światło jest gładkie i jednolite.</li>
+            </ul>
+            <p><strong>COB MONO</strong> (Jednokolorowe taśmy LED):</p>
+            <ul class="bullet">
+                <li>Barwy: 2700K, 3000K, 4000K, 6500K</li>
+                <li>Zagęszczenie: 320 – 528 LED/m.</li>
+            </ul>
+            <p><strong>COB CCT (Tunable White)</strong> (Zmiana temperatury barwy):</p>
+            <p>Zakres: 2700K – 6500K. Pozwala dopasować światło do:</p>
+            <ul class="bullet">
+                <li>pracy</li>
+                <li>relaksu</li>
+                <li>pory dnia.</li>
+            </ul>
+            <p><strong>COB RGB:</strong> Wielokolorowe taśmy z jednolitą linią światła.</p>
+            <p><strong>COB RGB+CCT:</strong> Łączą kolory RGB i regulację temperatury bieli.</p>
+            <p><strong>COB Nano IP67:</strong></p>
+            <ul class="bullet">
+                <li>chroni przed wilgocią</li>
+                <li>nie żółknie</li>
+                <li>nie zmienia barwy światła.</li>
+            </ul>
+            <p>Zastosowanie: łazienki, kuchnie, tarasy, instalacje zewnętrzne.</p>
+            <p><strong>COB DIGITAL</strong> (Taśmy programowalne):</p>
+            <ul class="bullet">
+                <li>animacje świetlne</li>
+                <li>efekt płynącej wody</li>
+                <li>dynamiczne instalacje świetlne.</li>
+            </ul>
+
+            <h3>Logistyka i wygoda instalatora</h3>
+            <p>Prescot zwraca dużą uwagę na praktyczne potrzeby instalatorów. Taśmy dostępne są w różnych długościach
+                rolek:</p>
+            <ul class="bullet">
+                <li>5 metrów</li>
+                <li>10 metrów</li>
+                <li>50 metrów</li>
+                <li>100 metrów</li>
+            </ul>
+            <p>Pozwala to dobrać optymalną ilość materiału do projektu i ograniczyć straty.</p>
+            <p>Dodatkowo taśmy dostępne są również cięte z metra, co jest szczególnie wygodne przy mniejszych
+                realizacjach lub prototypach instalacji.</p>
+
+            <h3>Zabezpieczenia taśm LED</h3>
+            <p>Prescot oferuje również różne poziomy zabezpieczenia taśm.</p>
+            <h4>Lakier ochronny</h4>
+            <p>Powłoka lakiernicza zabezpiecza elektronikę przed:</p>
+            <ul class="bullet">
+                <li>kurzem</li>
+                <li>wilgocią</li>
+                <li>utlenianiem.</li>
+            </ul>
+            <p>Stopień ochrony: <strong>IP54</strong></p>
+            <h4>Koszulka silikonowa</h4>
+            <p>Pełna ochrona instalacji. Stopień szczelności: <strong>IP68</strong></p>
+            <p>Chroni taśmę przed:</p>
+            <ul class="bullet">
+                <li>wodą</li>
+                <li>pyłem</li>
+                <li>czynnikami zewnętrznymi.</li>
+            </ul>
+            <p>Takie rozwiązanie stosowane jest w instalacjach:</p>
+            <ul class="bullet">
+                <li>zewnętrznych</li>
+                <li>ogrodowych</li>
+                <li>architektonicznych</li>
+                <li>w wilgotnych pomieszczeniach.</li>
+            </ul>
         </div>
 
         <!-- MODULE 3: ZASILACZE I AKCESORIA -->
         <div class="section-card">
             <span class="module-label">Moduł 3</span>
             <h2>Systemy Zasilania i Akcesoria – Stabilność Systemu</h2>
-            <p>Zasilacz to serce każdej instalacji LED. Prescot oferuje kompleksową gamę zasilaczy dopasowanych do
-                różnych potrzeb montażowych, zapewniających bezawaryjną pracę systemów przez lata.</p>
-
-            <h3>Zasilacze Prescot – Kluczowe Linie</h3>
+            <p>Zasilacz to serce każdej instalacji LED. Prescot oferuje kompleksową gamę zasilaczy Scharfer oraz linii
+                dedykowanych, zapewniających bezawaryjną pracę systemów.</p>
             <div class="product-grid">
                 <div class="product-card">
                     <h4>Scharfer Premium <span class="warranty-tag">5 lat gwarancji</span></h4>
-                    <p>Najwyższa półka profesjonalna. Ultra-stabilne parametry, wysoka sprawność energetyczna.</p>
-                    <ul class="bullet" style="font-size: 0.95rem;">
-                        <li>Chłodzenie pasywne (cisza pracy)</li>
-                        <li>Zabezpieczenia przeciwzwarciowe i przeciążeniowe</li>
-                        <li>Dedykowane do najbardziej wymagających projektów</li>
-                    </ul>
+                    <p>Ultra-stabilne parametry, chłodzenie pasywne, pełna ochrona.</p>
                 </div>
-
                 <div class="product-card">
                     <h4>Linia PR (Professional)</h4>
-                    <p>Zasilacze modułowe i instalacyjne. Standard branżowy dla profesjonalistów.</p>
-                    <ul class="bullet" style="font-size: 0.95rem;">
-                        <li>Wysoka niezawodność</li>
-                        <li>Stabilizacja napięcia 12V/24V</li>
-                        <li>Długa żywotność kondensatorów</li>
-                    </ul>
+                    <p>Standard branżowy. Stabilizacja 12V/24V, długa żywotność.</p>
                 </div>
-
                 <div class="product-card">
                     <h4>Linia PG (Slim / Furniture)</h4>
-                    <p>Modele super-płaskie (Slim), zaprojektowane specjalnie do meblarstwa.</p>
-                    <ul class="bullet" style="font-size: 0.95rem;">
-                        <li>Mieszczą się w wąskich profilach i frezach</li>
-                        <li>Niskie nagrzewanie się obudowy</li>
-                        <li>Certyfikowana klasa palności (bezpieczeństwo w meblach)</li>
-                    </ul>
+                    <p>Super-płaskie. Bezpieczne w meblach, certyfikowana klasa palności.</p>
                 </div>
-
                 <div class="product-card">
                     <h4>Linia IP (Hermetic)</h4>
-                    <p>Zasilacze o podwyższonej gęstości szczelności IP67.</p>
-                    <ul class="bullet" style="font-size: 0.95rem;">
-                        <li>Wodoodporne i pyłoszczelne</li>
-                        <li>Do łazienek, kuchni i na zewnątrz</li>
-                        <li>Odporne na warunki atmosferyczne</li>
-                    </ul>
+                    <p>Stopień IP67. Do łazienek, kuchni i instalacji zewnętrznych.</p>
                 </div>
-
                 <div class="product-card">
-                    <h4>Linia PD (Desktop / Plug-in)</h4>
-                    <p>Wygodne zasilacze wtyczkowe i biurkowe.</p>
-                    <ul class="bullet" style="font-size: 0.95rem;">
-                        <li>Szybki montaż "Plug & Play"</li>
-                        <li>Idealne do oświetlenia biurkowego i hobby</li>
-                        <li>Kompaktowe rozmiary</li>
-                    </ul>
+                    <h4>Linia PD (Desktop)</h4>
+                    <p>Zasilacze wtyczkowe "Plug & Play". Kompaktowe i szybkie w montażu.</p>
                 </div>
             </div>
-
-            <h3>Akcesoria montażowe i połączeniowe</h3>
-            <p>Kompletny system Prescot to nie tylko taśmy i zasilacze, ale także profesjonalne akcesoria ułatwiające
-                pracę instalatorowi.</p>
-            <div class="feature-grid">
-                <div class="feature-item">
-                    <strong>Złączki i Kable</strong>
-                    <p style="font-size: 0.95rem; margin: 0;">Szybkozłącza bezlutowe, przewody dedykowane 2-pin i
-                        wielopinowe (RGB/CCT).</p>
-                </div>
-                <div class="feature-item">
-                    <strong>Taśmy montażowe 3M</strong>
-                    <p style="font-size: 0.95rem; margin: 0;">Najmocniejsze dwustronne taśmy zapewniające pewność
-                        montażu na każdej powierzchni.</p>
-                </div>
-                <div class="feature-item">
-                    <strong>Zaślepki i Uchwyty</strong>
-                    <p style="font-size: 0.95rem; margin: 0;">Precyzyjne wykończenie profili, stabilne mocowanie w
-                        trudnych warunkach.</p>
-                </div>
-                <div class="feature-item">
-                    <strong>Rozdzielacze i Huby</strong>
-                    <p style="font-size: 0.95rem; margin: 0;">Ułatwiają łączenie wielu odcinków taśm do jednego punktu
-                        zasilającego.</p>
-                </div>
-            </div>
+            <h3>Akcesoria</h3>
+            <ul class="check">
+                <li>Złączki i kable (bezlutowe, 2-pin, RGB)</li>
+                <li>Taśmy montażowe 3M (najwyższa siła klejenia)</li>
+                <li>Zaślepki i uchwyty</li>
+                <li>Rozdzielacze i Huby połączeniowe</li>
+            </ul>
         </div>
 
         <!-- SUMMARY -->
         <div class="summary-block">
             <h2>Podsumowanie</h2>
-            <p>Taśmy Prescot, zasilacze Scharfer oraz linie PR, PD, PG i IP tworzą techniczny ekosystem, który w
-                połączeniu z profilami KLUŚ i sterowaniem MiBoxer pozwala na realizację najbardziej skomplikowanych
-                projektów oświetleniowych z gwarancją najwyższej jakości.</p>
+            <p>Taśmy Prescot tworzą jedną z najbardziej rozbudowanych ofert na rynku.</p>
+            <p>Obejmują:</p>
+            <ul class="bullet">
+                <li>taśmy profesjonalne</li>
+                <li>taśmy specjalistyczne</li>
+                <li>taśmy COB</li>
+                <li>taśmy RGB i CCT</li>
+                <li>rozwiązania przemysłowe i dekoracyjne.</li>
+            </ul>
+            <p>W połączeniu z:</p>
+            <ul class="bullet">
+                <li>profilami KLUŚ</li>
+                <li>zasilaczami Scharfer</li>
+                <li>sterowaniem MiBoxer</li>
+            </ul>
+            <p>pozwalają budować kompletne, profesjonalne systemy oświetleniowe LED.</p>
         </div>
 
         <footer>
