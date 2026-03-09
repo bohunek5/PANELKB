@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Szkolenie Produktowe Prescot LED | KB-CORE</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=JetBrains+Mono&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --bg: #f8fafc;
+            --primary: #001f3f;
+            --accent: #00ff8c;
+            --text: #1e293b;
+            --bubble-bg: #ffffff;
+            --shadow: 0 20px 40px rgba(0, 0, 0, 0.04);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Hero Section */
+        header {
+            padding: 80px 20px;
+            text-align: center;
+            background: linear-gradient(135deg, #001f3f 0%, #003366 100%);
+            color: white;
+            border-radius: 0 0 50px 50px;
+            margin-bottom: 60px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(0, 255, 140, 0.1) 0%, transparent 60%);
+            animation: pulse 10s infinite;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.1);
+            }
+        }
+
+        .badge {
+            background: var(--accent);
+            color: #000;
+            padding: 6px 16px;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.8;
+            font-weight: 300;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Modules Styling */
+        .section-title {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 40px;
+            padding-left: 20px;
+            border-left: 6px solid var(--accent);
+        }
+
+        .bubble-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            margin-bottom: 80px;
+        }
+
+        .bubble {
+            background: var(--bubble-bg);
+            padding: 40px;
+            border-radius: 40px;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 1px solid rgba(0, 0, 0, 0.02);
+        }
+
+        .bubble:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.08);
+        }
+
+        .bubble h3 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .bubble p {
+            font-size: 1rem;
+            color: #64748b;
+            margin-bottom: 15px;
+        }
+
+        .list-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 12px;
+            font-size: 0.95rem;
+        }
+
+        .list-item i {
+            color: var(--accent);
+            font-weight: 800;
+            font-style: normal;
+        }
+
+        /* Technology Features */
+        .tech-box {
+            background: var(--primary);
+            color: white;
+            padding: 60px;
+            border-radius: 50px;
+            margin-bottom: 80px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+        }
+
+        .tech-feature {
+            flex: 1;
+            min-width: 250px;
+        }
+
+        .tech-feature h4 {
+            color: var(--accent);
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* Product Cards */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .product-card {
+            background: white;
+            padding: 25px;
+            border-radius: 30px;
+            border: 1px solid #e2e8f0;
+            text-align: center;
+        }
+
+        .product-card .warranty {
+            font-size: 0.7rem;
+            background: #f1f5f9;
+            padding: 4px 10px;
+            border-radius: 10px;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+
+        .product-card h5 {
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+            color: var(--primary);
+        }
+
+        /* Footer */
+        footer {
+            padding: 60px 20px;
+            text-align: center;
+            background: #f1f5f9;
+            font-size: 0.9rem;
+            color: #64748b;
+        }
+
+        /* Mobile specific adjustments */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            .bubble {
+                padding: 30px;
+            }
+
+            .tech-box {
+                padding: 30px;
+                border-radius: 30px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="badge">KB-CORE Intelligence</div>
+        <h1>Instruktaż Produktowy</h1>
+        <p class="subtitle">DNA Firmy Prescot & Systemy LED High-End</p>
+    </header>
+
+    <div class="container">
+
+        <!-- MODULE 1 -->
+        <h2 class="section-title">Moduł 1: DNA Firmy</h2>
+        <div class="bubble-grid">
+            <div class="bubble">
+                <h3><span>🏭</span> Produkcja w Giżycku</h3>
+                <p>Centrum operacyjne i park maszynowy w Polsce to nasza największa przewaga strategiczna.</p>
+                <div class="list-item"><i>✔</i>
+                    <div><b>Pełna Kontrola:</b> Gwarantowana powtarzalność barwy światła.</div>
+                </div>
+                <div class="list-item"><i>✔</i>
+                    <div><b>Niezależność:</b> Brak zatorów logistycznych z Azji.</div>
+                </div>
+                <div class="list-item"><i>✔</i>
+                    <div><b>Customizacja:</b> Cięcie na wymiar, lutowanie, gotowe moduły.</div>
+                </div>
+            </div>
+
+            <div class="bubble">
+                <h3><span>🤝</span> Partnerstwa Tech</h3>
+                <p>Dostarczamy kompletne systemy, nie tylko pojedyncze taśmy.</p>
+                <div class="list-item"><i>🔹</i>
+                    <div><b>KLUŚ:</b> Profile aluminiowe premium.</div>
+                </div>
+                <div class="list-item"><i>🔹</i>
+                    <div><b>MiBoxer:</b> Inteligentne sterowanie.</div>
+                </div>
+                <div class="list-item"><i>🔹</i>
+                    <div><b>Scharfer:</b> Niezawodne zasilanie profesjonalne.</div>
+                </div>
+                <div class="list-item"><i>🔹</i>
+                    <div><b>ELBA:</b> Oprawy komercyjne i przemysłowe.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- MODULE 2 TECHNOLOGY -->
+        <h2 class="section-title">Moduł 2: Fundament Technologii</h2>
+        <div class="tech-box">
+            <div class="tech-feature">
+                <h4><span>⚡</span> PCB 4oz (Miedź)</h4>
+                <p style="font-size: 0.9rem; opacity: 0.9;">Nasze taśmy to "autostrady energetyczne". 4 uncje miedzi
+                    eliminują spadki napięcia i działają jak potężny radiator termiczny, wydłużając życie diod do
+                    maksimum.</p>
+            </div>
+            <div class="tech-feature">
+                <h4><span>🎯</span> Selekcja (Binning)</h4>
+                <p style="font-size: 0.9rem; opacity: 0.9;">Stosujemy tylko emitory Tier 1 (OSRAM, Cree, Lumileds).
+                    Efekt? Skuteczność ponad 200 lm/W i perfekcyjnie białe światło bez przekłamań.</p>
+            </div>
+            <div class="tech-feature">
+                <h4><span>✂</span> OneCut 1cm</h4>
+                <p style="font-size: 0.9rem; opacity: 0.9;">Precyzja co do milimetra. Możliwość cięcia co 1 cm pozwala
+                    wyeliminować ciemne strefy w meblach i niszach architektonicznych.</p>
+            </div>
+        </div>
+
+        <!-- PRODUCT SERIES -->
+        <h2 class="section-title">Oferta Taśm LED (Serie)</h2>
+        <div class="bubble-grid">
+            <div class="bubble" style="grid-column: 1 / -1;">
+                <h3><span>💎</span> Serie DELUX (Gwarancja 7 lat)</h3>
+                <div class="product-grid">
+                    <div class="product-card">
+                        <div class="warranty">7 LAT GWARANCJI</div>
+                        <h5>Delux PRO</h5>
+                        <p style="font-size: 0.8rem;">PCB 4oz, 126/180 LED/m. Idealnie jednolita linia światła.</p>
+                    </div>
+                    <div class="product-card">
+                        <div class="warranty">7 LAT GWARANCJI</div>
+                        <h5>Delux High Brightness</h5>
+                        <p style="font-size: 0.8rem;">Diody SMD4014. Potężny strumień świetlny dla witryn.</p>
+                    </div>
+                    <div class="product-card">
+                        <div class="warranty">7 LAT GWARANCJI</div>
+                        <h5>Delux SLIM</h5>
+                        <p style="font-size: 0.8rem;">Tylko 4mm szerokości. Mieści się w mikrofrezach.</p>
+                    </div>
+                    <div class="product-card">
+                        <div class="warranty">7 LAT GWARANCJI</div>
+                        <h5>Delux True Color</h5>
+                        <p style="font-size: 0.8rem;">CRI ≥97. Wierne oddawanie barw w galeriach i butikach.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bubble">
+                <h3><span>🥖</span> Prescot BREAD</h3>
+                <p>Specjalista dla piekarni. Barwa 2500K ("Złota skórka") podkreśla świeżość i brąz wypieków.</p>
+                <div class="list-item"><i>✔</i>
+                    <div>70 LED/m: Regały zamknięte.</div>
+                </div>
+                <div class="list-item"><i>✔</i>
+                    <div>160 LED/m: Lady sprzedażowe.</div>
+                </div>
+            </div>
+
+            <div class="bubble">
+                <h3><span>🌊</span> Taśmy COB</h3>
+                <p>Technologia Chip-On-Board. Brak widocznych punktów świetlnych nawet bez klosza!</p>
+                <div class="list-item"><i>✔</i>
+                    <div><b>COB Mono / CCT / RGB:</b> Płynna linia.</div>
+                </div>
+                <div class="list-item"><i>✔</i>
+                    <div><b>COB Nano IP67:</b> Ultracienka ochrona wodna.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SUMMARY BUBBLE -->
+        <div class="bubble" style="background: var(--accent); color: #000; text-align: center; margin-bottom: 80px;">
+            <h3 style="justify-content: center; color: #000;"><span>🚀</span> Gotowy do montażu</h3>
+            <p style="color: #000; font-weight: 500;">Dzięki customizacji Prescot, instalator dostaje moduł gotowy do
+                wpięcia. Przyspieszamy instalację, eliminujemy błędy i dbamy o estetykę.</p>
+        </div>
+
+    </div>
+
+    <footer>
+        <p>&copy; 2026 KB-CORE Intelligence for Prescot LED GIŻYCKO.</p>
+        <p style="font-family: 'JetBrains Mono'; font-size: 0.7rem; margin-top: 10px;">PROCESSED BY KB-CORE SECURE HUB
+        </p>
+    </footer>
+
+</body>
+
+</html>
