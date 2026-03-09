@@ -28,6 +28,10 @@
             -webkit-font-smoothing: antialiased;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
             font-family: 'Outfit', sans-serif;
             background-color: var(--bg);
@@ -77,7 +81,7 @@
         /* Hero Header */
         header {
             text-align: center;
-            padding: 5rem 0 3rem;
+            padding: 5rem 0 2rem;
         }
 
         .pre-title {
@@ -111,6 +115,71 @@
             border-radius: 50px;
         }
 
+        /* Spis Treści */
+        .toc-card {
+            background: #f0f4f8;
+            border-radius: var(--radius);
+            padding: 2.5rem;
+            margin-top: 2rem;
+            border: 2px dashed #d1d9e6;
+        }
+
+        .toc-card h3 {
+            margin: 0 0 1.5rem 0;
+            border: none;
+            padding: 0;
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--prescot-navy);
+            text-align: center;
+        }
+
+        .toc-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .toc-link {
+            background: var(--white);
+            padding: 1rem;
+            border-radius: 12px;
+            text-decoration: none;
+            color: var(--prescot-navy);
+            font-weight: 700;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            transition: all 0.2s ease;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        }
+
+        .toc-link:hover {
+            transform: translateY(-3px);
+            background: var(--prescot-orange);
+            color: white;
+            box-shadow: 0 5px 15px rgba(255, 93, 0, 0.2);
+        }
+
+        .toc-link span {
+            background: #eee;
+            width: 28px;
+            height: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            color: var(--prescot-navy);
+        }
+
+        .toc-link:hover span {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+        }
+
         /* Cards and Sections */
         .section-card {
             background: var(--white);
@@ -120,6 +189,7 @@
             box-shadow: var(--shadow);
             border: 1px solid rgba(0, 31, 63, 0.02);
             position: relative;
+            scroll-margin-top: 100px;
         }
 
         .module-label {
@@ -360,10 +430,21 @@
             <h1>SZKOLENIE PRODUKTOWO-SPRZEDAŻOWE</h1>
             <div class="plan-info">PRESCOT LED PLAN 1 Fundamenty i Produkty Główne (Wdrożenie Techniczno-Produktowe)
             </div>
+
+            <!-- SPIS TREŚCI (TOC) -->
+            <div class="toc-card">
+                <h3>Szybka Nawigacja (DLA PROWADZĄCEGO)</h3>
+                <div class="toc-grid">
+                    <a href="#modul1" class="toc-link"><span>1</span> DNA i Logistyka</a>
+                    <a href="#modul2" class="toc-link"><span>2</span> Taśmy LED Polska</a>
+                    <a href="#modul3" class="toc-link"><span>3</span> Zasilacze i Akcesoria</a>
+                    <a href="#summary" class="toc-link"><span>4</span> Podsumowanie Oferty</a>
+                </div>
+            </div>
         </header>
 
         <!-- MODULE 1 -->
-        <div class="section-card">
+        <div class="section-card" id="modul1">
             <span class="module-label">Moduł 1</span>
             <h2>Kim jesteśmy? – DNA firmy Prescot</h2>
             <p>Prescot to hybrydowy profil działalności, łączący elastyczność polskiego producenta z zasięgiem
@@ -443,7 +524,7 @@
         </div>
 
         <!-- MODULE 2 -->
-        <div class="section-card">
+        <div class="section-card" id="modul2">
             <span class="module-label">Moduł 2</span>
             <h2>Filar oferty – Taśmy LED Prescot (Produkcja Polska)</h2>
             <p>Taśmy LED są jednym z kluczowych filarów oferty Prescot. Produkty projektowane są z myślą o
@@ -562,7 +643,7 @@
 
             <h4>Seria PRESCOT BREAD (5 lat gwarancji)</h4>
             <p>Specjalistyczna taśma zaprojektowana dla branży piekarniczej. Barwa światła: <strong>2500K – "Złota
-                    skórka"</strong></p>
+                    565: skórka"</strong></p>
             <p>Podkreśla ciepłe barwy pieczywa:</p>
             <ul class="bullet">
                 <li>brązy</li>
@@ -603,7 +684,7 @@
             </ul>
 
             <h3>Taśmy COB (Chip On Board)</h3>
-            <p>Technologia COB pozwala uzyskać idealnie jednolitą linię światła. Diody są pokryte warstwą luminoforu,
+            <p>Technologia COB pozwala uzyskać idealnie jednolitą linię światła. Diody are pokryte warstwą luminoforu,
                 dzięki czemu:</p>
             <ul class="bullet">
                 <li>nie widać pojedynczych punktów</li>
@@ -678,7 +759,7 @@
         </div>
 
         <!-- MODULE 3: ZASILACZE I AKCESORIA -->
-        <div class="section-card">
+        <div class="section-card" id="modul3">
             <span class="module-label">Moduł 3</span>
             <h2>Systemy Zasilania i Akcesoria – Stabilność Systemu</h2>
             <p>Zasilacz to serce każdej instalacji LED. Prescot oferuje kompleksową gamę zasilaczy Scharfer oraz linii
@@ -715,7 +796,7 @@
         </div>
 
         <!-- SUMMARY -->
-        <div class="summary-block">
+        <div class="summary-block" id="summary">
             <h2>Podsumowanie</h2>
             <p>Taśmy Prescot tworzą jedną z najbardziej rozbudowanych ofert na rynku.</p>
             <p>Obejmują:</p>
