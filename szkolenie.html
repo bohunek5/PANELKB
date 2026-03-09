@@ -4,21 +4,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Szkolenie Produktowe Prescot LED | Premium Training</title>
+    <title>KOMPENDIUM PRESCOT LED | KB-CORE v3.0</title>
     <link
-        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@500;700&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@500;700;800&display=swap"
         rel="stylesheet">
     <style>
         :root {
             --prescot-navy: #001f3f;
             --prescot-orange: #ff6600;
-            --bg-color: #0c0f16;
-            --glass-bg: rgba(15, 20, 30, 0.85);
-            --glass-border: rgba(0, 242, 255, 0.2);
+            --bg-color: #020408;
+            --glass-bg: rgba(10, 15, 25, 0.75);
+            --glass-border: rgba(0, 242, 255, 0.25);
             --text-main: #f8fafc;
             --text-dim: #94a3b8;
-            --block-bg: rgba(255, 255, 255, 0.03);
-            --accent-glow: rgba(255, 102, 0, 0.4);
+            --block-bg: rgba(25, 30, 45, 0.6);
+            --accent-glow: rgba(255, 102, 0, 0.5);
+            --radius-main: 50px;
         }
 
         * {
@@ -26,246 +27,280 @@
             padding: 0;
             box-sizing: border-box;
             font-family: 'Outfit', sans-serif;
+            -webkit-font-smoothing: antialiased;
         }
 
         body {
             background-color: var(--bg-color);
             color: var(--text-main);
-            line-height: 1.6;
+            line-height: 1.7;
             overflow-x: hidden;
-            background: radial-gradient(circle at 50% 0%, #1a2a40 0%, #0c0f16 100%);
+            background: radial-gradient(circle at 50% 0%, #0a1526 0%, #020408 100%);
+            min-height: 100vh;
         }
 
-        /* Top Bar Style from Commander */
+        /* Top Bar - KB-CORE Style */
         .top-bar {
-            height: 45px;
-            background: rgba(5, 8, 15, 0.95);
-            backdrop-filter: blur(25px);
+            height: 50px;
+            background: rgba(5, 8, 15, 0.98);
+            backdrop-filter: blur(30px);
             border-bottom: 1px solid var(--glass-border);
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 0 40px;
-            font-size: 0.85rem;
+            padding: 0 50px;
+            font-size: 0.9rem;
             position: fixed;
             top: 0;
             width: 100%;
-            z-index: 1000;
-            box-shadow: 0 4px 20px rgba(0, 242, 255, 0.1);
+            z-index: 2000;
+            box-shadow: 0 4px 30px rgba(0, 242, 255, 0.15);
         }
 
         .logo-box {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
             font-weight: 900;
-            letter-spacing: 1px;
+            letter-spacing: 2px;
             color: white;
-            font-size: 1.1rem;
+            font-size: 1.2rem;
         }
 
         .logo-box span {
             color: var(--prescot-orange);
         }
 
-        /* Unified H1 Header */
+        .system-id {
+            font-family: 'JetBrains Mono', monospace;
+            color: var(--prescot-orange);
+            font-weight: 800;
+            letter-spacing: 1px;
+        }
+
+        /* Hero Header */
         header {
-            padding: 140px 20px 80px;
+            padding: 160px 20px 100px;
             text-align: center;
-            background: transparent;
         }
 
         h1 {
-            font-size: clamp(2.5rem, 8vw, 5rem);
+            font-size: clamp(3rem, 10vw, 6.5rem);
             font-weight: 900;
             color: white;
             text-transform: uppercase;
-            letter-spacing: -2px;
-            line-height: 0.95;
-            margin-bottom: 20px;
+            letter-spacing: -3px;
+            line-height: 0.9;
+            margin-bottom: 30px;
         }
 
         .hero-sub {
-            font-size: 1.4rem;
+            font-size: 1.8rem;
             color: var(--text-dim);
             font-weight: 300;
-            max-width: 800px;
+            max-width: 1000px;
             margin: 0 auto;
+            line-height: 1.4;
         }
 
-        /* Unified Grey Blocks */
+        /* Unified Content Blocks */
         .container {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
-            padding: 0 20px 100px;
+            padding: 0 30px 150px;
         }
 
-        .module-block {
+        .kb-block {
             background: var(--block-bg);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 40px;
-            padding: 60px;
-            margin-bottom: 50px;
-            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-main);
+            padding: 80px;
+            margin-bottom: 70px;
+            backdrop-filter: blur(20px);
             position: relative;
-            overflow: hidden;
+            box-shadow: 0 50px 100px rgba(0, 0, 0, 0.5);
         }
 
-        .module-block::before {
+        .kb-block::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
-            width: 5px;
+            width: 8px;
             height: 100%;
             background: var(--prescot-orange);
-            box-shadow: 0 0 15px var(--prescot-orange);
+            box-shadow: 0 0 25px var(--prescot-orange);
         }
 
-        .module-tag {
+        .kb-label {
             color: var(--prescot-orange);
             font-family: 'JetBrains Mono', monospace;
-            font-weight: 700;
-            font-size: 1rem;
-            margin-bottom: 15px;
+            font-weight: 800;
+            font-size: 1.1rem;
+            margin-bottom: 20px;
             display: block;
             text-transform: uppercase;
+            letter-spacing: 4px;
         }
 
         h2 {
-            font-size: 2.5rem;
+            font-size: 3.5rem;
             font-weight: 800;
             color: white;
-            margin-bottom: 40px;
-            letter-spacing: -1px;
+            margin-bottom: 50px;
+            letter-spacing: -2px;
+            line-height: 1;
         }
 
         h3 {
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: var(--text-main);
-            margin: 40px 0 20px;
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: white;
+            margin: 60px 0 30px;
             display: flex;
             align-items: center;
-            gap: 15px;
+            gap: 20px;
         }
 
-        h3 i {
+        h3 span {
             color: var(--prescot-orange);
-            font-style: normal;
         }
 
         p {
-            font-size: 1.25rem;
+            font-size: 1.5rem;
             color: var(--text-dim);
-            margin-bottom: 30px;
-            line-height: 1.7;
+            margin-bottom: 40px;
+            line-height: 1.6;
         }
 
-        /* Pro List and Item Style */
-        .list-wrap {
+        /* 1:1 Accurate List Styling */
+        .full-list {
             display: grid;
-            gap: 15px;
-            margin-top: 30px;
+            gap: 20px;
+            margin: 40px 0;
         }
 
-        .list-item {
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            padding: 25px 35px;
-            border-radius: 20px;
-            font-size: 1.2rem;
+        .full-item {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 30px 45px;
+            border-radius: 25px;
+            font-size: 1.4rem;
             font-weight: 500;
             color: var(--text-main);
             display: flex;
             align-items: center;
-            gap: 20px;
+            gap: 25px;
             transition: all 0.3s ease;
         }
 
-        .list-item:hover {
-            background: rgba(255, 102, 0, 0.05);
+        .full-item:hover {
             border-color: var(--prescot-orange);
+            background: rgba(255, 102, 0, 0.05);
+            transform: translateX(10px);
         }
 
-        .list-item b {
+        .full-item b {
             color: var(--prescot-orange);
+            margin-right: 5px;
         }
 
-        /* Unified Grid */
+        /* Tech Grid */
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
-            margin-top: 60px;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
         }
 
         .box {
-            background: rgba(0, 0, 0, 0.2);
-            padding: 35px;
-            border-radius: 25px;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            transition: all 0.3s ease;
+            background: rgba(0, 0, 0, 0.3);
+            padding: 45px;
+            border-radius: 35px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
         .box:hover {
             border-color: var(--prescot-orange);
-            transform: translateY(-5px);
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(255, 102, 0, 0.1);
         }
 
         .box h4 {
-            font-size: 1.4rem;
+            font-size: 1.7rem;
             color: var(--prescot-orange);
-            margin-bottom: 15px;
-            font-weight: 800;
+            margin-bottom: 20px;
+            font-weight: 900;
+            text-transform: uppercase;
         }
 
         .box ul {
             list-style: none;
             color: var(--text-dim);
-            font-size: 1.1rem;
+            font-size: 1.3rem;
         }
 
         .box li {
-            margin-bottom: 10px;
-            padding-left: 20px;
+            margin-bottom: 12px;
+            padding-left: 25px;
             position: relative;
         }
 
         .box li::before {
-            content: '→';
+            content: '•';
             position: absolute;
             left: 0;
             color: var(--prescot-orange);
+            font-weight: 900;
+        }
+
+        .blue-tag {
+            font-family: 'JetBrains Mono', monospace;
+            background: #001f3f;
+            color: var(--prescot-orange);
+            padding: 5px 15px;
+            border-radius: 8px;
+            font-size: 1rem;
+            margin-right: 10px;
         }
 
         .footer {
-            padding: 100px 20px;
+            padding: 120px 20px;
             text-align: center;
             border-top: 1px solid rgba(255, 255, 255, 0.05);
-            margin-top: 100px;
+            margin-top: 120px;
         }
 
-        .mono {
+        .mono-stat {
             font-family: 'JetBrains Mono', monospace;
-            font-size: 0.8rem;
+            font-size: 0.85rem;
             opacity: 0.4;
-            letter-spacing: 2px;
-            margin-top: 20px;
+            letter-spacing: 3px;
+            margin-top: 30px;
+            text-transform: uppercase;
         }
 
-        @media (max-width: 768px) {
+        @media (max-width: 1024px) {
             h1 {
-                font-size: 3rem;
+                font-size: 4rem;
             }
 
-            .module-block {
-                padding: 30px;
-                border-radius: 30px;
+            .kb-block {
+                padding: 40px;
+                border-radius: 35px;
             }
 
-            .top-bar {
-                padding: 0 20px;
+            h2 {
+                font-size: 2.5rem;
+            }
+
+            p {
+                font-size: 1.2rem;
+            }
+
+            .container {
+                padding: 0 20px 100px;
             }
         }
     </style>
@@ -273,153 +308,291 @@
 
 <body>
 
+    <!-- OS TOP BAR -->
     <div class="top-bar">
         <div class="logo-box">PRESCOT <span>LED</span></div>
-        <div style="font-family: 'JetBrains Mono'; font-size: 0.75rem; color: var(--prescot-orange); font-weight: 800;">
-            KB-CORE // SECURE_TRAINING_SYSTEM</div>
+        <div class="system-id">KB-CORE // ARCHIVE_v3 // 1:1_FULL_REPLICATION</div>
     </div>
 
     <header>
-        <h1>Szczegółowy Instruktaż<br>Produktowy</h1>
-        <p class="hero-sub">Kompletne wdrożenie techniczne Systemów Oświetlenia LED Prescot – Edycja Professional</p>
+        <h1>SZKOLENIE<br>PRODUKTOWO-SPRZEDAŻOWE</h1>
+        <p class="hero-sub">PRESCOT LED PLAN 1 – Fundamenty i Produkty Główne (Wdrożenie Techniczno-Produktowe)</p>
     </header>
 
     <div class="container">
 
         <!-- MODUŁ 1 -->
-        <div class="module-block">
-            <span class="module-tag">Module 01</span>
-            <h2>Kim jesteśmy? DNA firmy Prescot</h2>
+        <div class="kb-block">
+            <span class="kb-label">Module_01 // DNA_FIRMY</span>
+            <h2>Kim jesteśmy? – DNA firmy Prescot</h2>
             <p>Prescot to hybrydowy profil działalności, łączący elastyczność polskiego producenta z zasięgiem
                 międzynarodowego dystrybutora dostarczająca kompletne systemy oświetlenia.</p>
 
-            <h3><i>🏭</i> Produkcja i logistyka (Giżycko)</h3>
+            <h3><span>🏭</span> Produkcja i logistyka</h3>
             <p>Centrum operacyjne, park maszynowy oraz magazyn znajdują się w Giżycku. Własna produkcja w Polsce to:</p>
-            <div class="list-wrap">
-                <div class="list-item"><b>✔</b> pełna kontrola nad powtarzalnością barwy światła</div>
-                <div class="list-item"><b>✔</b> niezależność od globalnych zatorów w transporcie z Azji</div>
-                <div class="list-item"><b>✔</b> możliwość customizacji: cięcie taśm na wymiar, lutowanie przewodów,
-                    konfekcjonowanie gotowych modułów montażowych</div>
-                <div class="list-item"><b>✔</b> Gwarantowana jakość produktów</div>
-                <div class="list-item"><b>✔</b> Stała dostępność magazynowa</div>
-                <div class="list-item"><b>✔</b> Terminowość dostaw</div>
+            <div class="full-list">
+                <div class="full-item"><b>✔</b> pełna kontrola nad powtarzalnością barwy światła,</div>
+                <div class="full-item"><b>✔</b> niezależność od globalnych zatorów w transporcie z Azji,</div>
+                <div class="full-item"><b>✔</b> możliwość customizacji: cięcie taśm na wymiar, lutowanie przewodów,
+                    konfekcjonowanie gotowych modułów montażowych.</div>
+                <div class="full-item"><b>✔</b> jakością produktów</div>
+                <div class="full-item"><b>✔</b> dostępnością magazynową</div>
+                <div class="full-item"><b>✔</b> terminowością dostaw</div>
             </div>
 
-            <h3><i>🌐</i> Dystrybucja i Partnerstwa</h3>
+            <h3><span>�</span> DYSTRYBUCJA</h3>
             <p>Prescot współpracuje z czołowymi producentami komponentów oświetleniowych:</p>
             <div class="grid">
                 <div class="box">
-                    <h4>ELBA Lighting</h4>
+                    <h4>ELBA Lighting Technology</h4>
                     <ul>
-                        <li>Oprawy komercyjne</li>
-                        <li>Technologia Pro</li>
+                        <li>profesjonalne oprawy komercyjne i przemysłowe</li>
                     </ul>
                 </div>
                 <div class="box">
                     <h4>KLUŚ</h4>
                     <ul>
-                        <li>Profile premium</li>
-                        <li>Systemy montażowe</li>
+                        <li>profile aluminiowe premium do systemów LED</li>
                     </ul>
                 </div>
                 <div class="box">
-                    <h4>MiBoxer</h4>
+                    <h4>MiBoxer / Mi-Light</h4>
                     <ul>
-                        <li>Inteligentne sterowanie</li>
-                        <li>Systemy bezprzewodowe</li>
+                        <li>inteligentne systemy sterowania oświetleniem</li>
                     </ul>
                 </div>
                 <div class="box">
                     <h4>Scharfer</h4>
                     <ul>
-                        <li>Zasilacze profesjonalne</li>
-                        <li>Stabilność prądowa</li>
+                        <li>profesjonalne zasilacze LED</li>
                     </ul>
                 </div>
             </div>
 
-            <h3 style="margin-top:80px;">Przewaga Rynkowa</h3>
-            <p>Prescot nie jest klasyczną hurtownią. Firma działa jako <b>pracownia projektowa oświetlenia</b>, która
-                dostarcza rozwiązania dopasowane do konkretnych inwestycji.</p>
+            <p style="margin-top:60px;">Dzięki temu Prescot oferuje pełne systemy oświetleniowe, obejmujące:</p>
+            <div class="grid" style="grid-template-columns: repeat(4, 1fr);">
+                <div class="tag-box"
+                    style="background:var(--prescot-navy); padding: 25px; border-radius: 20px; text-align: center; border: 1px solid var(--prescot-orange); font-weight: 800;">
+                    źródło światła</div>
+                <div class="tag-box"
+                    style="background:var(--prescot-navy); padding: 25px; border-radius: 20px; text-align: center; border: 1px solid var(--prescot-orange); font-weight: 800;">
+                    zasilanie</div>
+                <div class="tag-box"
+                    style="background:var(--prescot-navy); padding: 25px; border-radius: 20px; text-align: center; border: 1px solid var(--prescot-orange); font-weight: 800;">
+                    sterowanie</div>
+                <div class="tag-box"
+                    style="background:var(--prescot-navy); padding: 25px; border-radius: 20px; text-align: center; border: 1px solid var(--prescot-orange); font-weight: 800;">
+                    system montażowy</div>
+            </div>
 
-            <div class="list-wrap">
-                <div class="list-item"><b>•</b> Stabilność dostaw i brak ryzyka opóźnień inwestycyjnych.</div>
-                <div class="list-item"><b>•</b> Customizacja: docinanie, lutowanie i przygotowanie gotowych modułów
-                    montażowych.</div>
-                <div class="list-item"><b>•</b> Sektory: Meblarstwo, Architektura, Jachty, Reklama, Hotele, Retail.
-                </div>
+            <p style="margin-top:60px;">Prescot nie jest klasyczną hurtownią. Firma działa jako pracownia projektowa
+                oświetlenia, która dostarcza rozwiązania dopasowane do konkretnych inwestycji.</p>
+
+            <h3><span>🚀</span> Przewaga rynkowa Prescot</h3>
+            <h4>Niezależność logistyczna</h4>
+            <p>Własny park maszynowy i magazyn in Polsce pozwalają uniezależnić się od problemów logistycznych
+                związanych z importem z Azji. Dla inwestora oznacza to:</p>
+            <div class="full-list">
+                <div class="full-item"><b>•</b> stabilność dostaw</div>
+                <div class="full-item"><b>•</b> krótsze terminy realizacji</div>
+                <div class="full-item"><b>•</b> brak ryzyka opóźnień inwestycyjnych</div>
+            </div>
+            <p style="font-weight: 700; color: white;">W branży budowlanej czas oznacza pieniądz. Prescot minimalizuje
+                ryzyko przestojów na budowie.</p>
+
+            <h4 style="margin-top:60px;">Customizacja – rozwiązania szyte na miarę</h4>
+            <p>Prescot wykracza poza standardową sprzedaż produktów z półki. Firma oferuje również:</p>
+            <div class="full-list">
+                <div class="full-item"><b>•</b> docinanie taśm LED na wymiar</div>
+                <div class="full-item"><b>•</b> lutowanie przewodów</div>
+                <div class="full-item"><b>•</b> kompletowanie instalacji</div>
+                <div class="full-item"><b>•</b> przygotowanie gotowych modułów montażowych</div>
+            </div>
+            <p>Dzięki temu instalator otrzymuje produkt gotowy do montażu, co:</p>
+            <div class="grid">
+                <div class="box" style="text-align: center;">przyspiesza instalację</div>
+                <div class="box" style="text-align: center;">minimalizuje ryzyko błędów</div>
+                <div class="box" style="text-align: center;">poprawia estetykę wykonania</div>
+            </div>
+
+            <h3 style="margin-top:80px;">Sektory kluczowe</h3>
+            <div class="grid" style="grid-template-columns: repeat(3, 1fr);">
+                <div class="tag-box"
+                    style="padding: 20px; border: 2px solid rgba(255,255,255,0.1); border-radius: 15px; text-align: center; font-weight: 700;">
+                    MEBLARSTWO</div>
+                <div class="tag-box"
+                    style="padding: 20px; border: 2px solid rgba(255,255,255,0.1); border-radius: 15px; text-align: center; font-weight: 700;">
+                    ARCHITEKTURA</div>
+                <div class="tag-box"
+                    style="padding: 20px; border: 2px solid rgba(255,255,255,0.1); border-radius: 15px; text-align: center; font-weight: 700;">
+                    JACHTY</div>
+                <div class="tag-box"
+                    style="padding: 20px; border: 2px solid rgba(255,255,255,0.1); border-radius: 15px; text-align: center; font-weight: 700;">
+                    REKLAMA</div>
+                <div class="tag-box"
+                    style="padding: 20px; border: 2px solid rgba(255,255,255,0.1); border-radius: 15px; text-align: center; font-weight: 700;">
+                    HOTELARSTWO</div>
+                <div class="tag-box"
+                    style="padding: 20px; border: 2px solid rgba(255,255,255,0.1); border-radius: 15px; text-align: center; font-weight: 700;">
+                    RETAIL</div>
             </div>
         </div>
 
         <!-- MODUŁ 2 -->
-        <div class="module-block">
-            <span class="module-tag">Module 02</span>
-            <h2>Filar oferty – Taśmy LED Prescot</h2>
+        <div class="kb-block">
+            <span class="kb-label">Module_02 // FILAR_OFERTY</span>
+            <h2>Moduł 2 Filar oferty – Taśmy LED Prescot (Produkcja Polska)</h2>
             <p>Taśmy LED są jednym z kluczowych filarów oferty Prescot. Produkty projektowane są z myślą o
                 profesjonalnych instalacjach – zarówno w sektorze meblowym, komercyjnym, retailowym jak i przemysłowym.
             </p>
+            <p>W przeciwieństwie do masowych taśm importowanych, konstrukcja taśm Prescot opiera się na solidnym podłożu
+                PCB, selekcjonowanych diodach oraz stabilnych parametrach elektrycznych, które gwarantują długą
+                żywotność instalacji.</p>
 
-            <h3><i>⚡</i> Fundament Technologiczny</h3>
-            <p>Odpowiedź na masowy import to solidne podłoża i selekcjonowane diody:</p>
-            <div class="list-wrap">
-                <div class="list-item"><b>PCB 4oz (Miedź):</b> Autostrada energetyczna i radiator termiczny. Stabilność
-                    na lata.</div>
-                <div class="list-item"><b>Binning Tier 1:</b> Emitery OSRAM, Cree, Lumileds. Skuteczność ponad 200 lm/W.
+            <h3><span>⚡</span> Fundament technologiczny</h3>
+            <h4>PCB wysokiej klasy – nawet 4oz</h4>
+            <p>W topowych seriach Prescot stosowane jest PCB 4oz, czyli podłoże z czterouncjową warstwą miedzi. Tak
+                gruba warstwa miedzi pełni dwie funkcje:</p>
+            <div class="grid">
+                <div class="box" style="border-left: 10px solid var(--prescot-orange);">
+                    <h4>Autostrada energetyczna</h4>
+                    <p>Minimalizuje spadki napięcia na długich odcinkach taśmy.</p>
                 </div>
-                <div class="list-item"><b>OneCut 1cm:</b> Precyzja cięcia eliminująca ciemne strefy w meblach i niszach.
+                <div class="box" style="border-left: 10px solid var(--prescot-orange);">
+                    <h4>Radiator termiczny</h4>
+                    <p>Skutecznie odprowadza ciepło z diod LED, co znacząco wydłuża ich żywotność.</p>
+                </div>
+            </div>
+            <p style="margin-top:40px;">W praktyce oznacza to, że:</p>
+            <div class="full-list">
+                <div class="full-item"><b>•</b> taśma świeci równomiernie na całej długości</div>
+                <div class="full-item"><b>•</b> diody nie tracą jasności z czasem</div>
+                <div class="full-item"><b>•</b> instalacja działa stabilnie przez wiele lat.</div>
+            </div>
+
+            <h4>Selekcja diod (binning)</h4>
+            <p>Prescot stosuje emitery od globalnych producentów klasy Tier 1: <b>OSRAM, Cree, Lumileds</b>. Dzięki temu
+                możliwe jest uzyskanie bardzo wysokiej skuteczności świetlnej – nawet ponad 200 lm/W.</p>
+            <p>Oznacza to: niższe zużycie energii, wyższą wydajność instalacji, stabilne parametry barwy światła.</p>
+
+            <h4>Technologia OneCut</h4>
+            <p>W wielu modelach taśm Prescot możliwe jest cięcie modułów co 1 cm. To ogromna przewaga w instalacjach
+                architektonicznych i meblowych.</p>
+            <p>Dzięki temu instalator może: idealnie dopasować długość taśmy, uniknąć ciemnych stref, zachować
+                perfekcyjną estetykę instalacji.</p>
+
+            <h2 style="margin-top:100px;">Flagowe serie taśm Prescot</h2>
+            <div class="grid">
+                <!-- DELUX PRO -->
+                <div class="box">
+                    <div
+                        style="background:var(--prescot-orange); color:black; display:inline-block; padding:5px 15px; border-radius:10px; font-weight:800; font-size:0.8rem; margin-bottom:15px;">
+                        GWARANCJA 7 LAT</div>
+                    <h4>Seria DELUX PRO</h4>
+                    <p style="font-size:1.1rem;">PCB 4oz // 126 LED/m or 180 LED/m. Najbardziej zaawansowana seria.
+                        Uzyskuje niemal idealnie jednolitą linię światła.</p>
+                    <p style="font-size:1rem; opacity:0.7;">Zastosowanie: meblarstwo premium, architektura wnętrz,
+                        oświetlenie liniowe sufitów, witryny sklepowe.</p>
+                </div>
+
+                <!-- LOW BRIGHTNESS -->
+                <div class="box">
+                    <h4>Delux PRO Low Brightness</h4>
+                    <p style="font-size:1.1rem;">Moc: około 1.6W / metr.</p>
+                    <p style="font-size:1rem; opacity:0.7;">Zastosowanie: podświetlenie cokołów, oświetlenie
+                        orientacyjne, nisze dekoracyjne.</p>
+                </div>
+
+                <!-- HIGH -->
+                <div class="box">
+                    <div
+                        style="background:var(--prescot-orange); color:black; display:inline-block; padding:5px 15px; border-radius:10px; font-weight:800; font-size:0.8rem; margin-bottom:15px;">
+                        GWARANCJA 7 LAT</div>
+                    <h4>DELUX HIGH BRIGHTNESS</h4>
+                    <p style="font-size:1.1rem;">Diody SMD4014 // CRI 90.</p>
+                    <p style="font-size:1rem; opacity:0.7;">Zastosowanie: oświetlenie główne, witryny sklepowe, ciągi
+                        komunikacyjne.</p>
+                </div>
+
+                <!-- SLIM -->
+                <div class="box">
+                    <div
+                        style="background:var(--prescot-orange); color:black; display:inline-block; padding:5px 15px; border-radius:10px; font-weight:800; font-size:0.8rem; margin-bottom:15px;">
+                        GWARANCJA 7 LAT</div>
+                    <h4>Seria DELUX SLIM</h4>
+                    <p style="font-size:1.1rem;">Szerokość PCB: 4 mm.</p>
+                    <p style="font-size:1rem; opacity:0.7;">Ideale do: mikrofrezów meblowych, krawędzi szkła, wąskich
+                        profili.</p>
+                </div>
+
+                <!-- TRUE COLOR -->
+                <div class="box">
+                    <div
+                        style="background:var(--prescot-orange); color:black; display:inline-block; padding:5px 15px; border-radius:10px; font-weight:800; font-size:0.8rem; margin-bottom:15px;">
+                        GWARANCJA 7 LAT</div>
+                    <h4>DELUX TRUE COLOR</h4>
+                    <p style="font-size:1.1rem;">CRI: ≥97.</p>
+                    <p style="font-size:1rem; opacity:0.7;">Zastosowanie: galerie sztuki, butiki odzieżowe, salony
+                        jubilerskie.</p>
+                </div>
+
+                <!-- BREAD -->
+                <div class="box" style="background:rgba(255,102,0,0.1);">
+                    <div
+                        style="background:var(--prescot-orange); color:black; display:inline-block; padding:5px 15px; border-radius:10px; font-weight:800; font-size:0.8rem; margin-bottom:15px;">
+                        GWARANCJA 5 LAT</div>
+                    <h4>Seria PRESCOT BREAD</h4>
+                    <p style="font-size:1.1rem;">Barwa: 2500K – "Złota skórka".</p>
+                    <p style="font-size:1rem; opacity:0.7;">70 LED/m (regale) lub 160 LED/m (lady). Podkreśla brązy i
+                        złoto wypieków.</p>
                 </div>
             </div>
 
-            <h3 style="margin-top:80px;">Flagowe Serie Produktowe</h3>
-            <div class="grid">
-                <div class="box" style="border-left: 5px solid var(--prescot-orange);">
-                    <h4>DELUX PRO</h4>
-                    <ul>
-                        <li>PCB 4oz // Gwarancja 7 lat</li>
-                        <li>126/180 LED/m - pełna linia światła</li>
-                        <li>Wersja Low Brightness (1.6W/m)</li>
-                    </ul>
-                </div>
-                <div class="box">
-                    <h4>SPECIALIST RANGE</h4>
-                    <ul>
-                        <li><b>DELUX HIGH:</b> Mocne diody SMD4014</li>
-                        <li><b>DELUX SLIM:</b> Tylko 4mm szerokości</li>
-                        <li><b>TRUE COLOR:</b> CRI ≥ 97 (Galerie/Butiki)</li>
-                    </ul>
-                </div>
-                <div class="box" style="background: rgba(255,102,0,0.05);">
-                    <h4>PRESCOT BREAD</h4>
-                    <ul>
-                        <li>Barwa 2500K "Złota skórka"</li>
-                        <li>Dedykowana dla piekarni</li>
-                        <li>Gwarancja 5 lat</li>
-                    </ul>
-                </div>
-                <div class="box">
-                    <h4>TECH & COB</h4>
-                    <ul>
-                        <li><b>COB:</b> Jednolita linia bez punktów</li>
-                        <li><b>COB NANO:</b> IP67 (Kuchnie/Łazienki)</li>
-                        <li><b>DIGITAL:</b> Animacje i sekcje</li>
-                    </ul>
-                </div>
+            <h3 style="margin-top:100px;">Seria PREMIUM (5 lat gwarancji)</h3>
+            <div class="full-list">
+                <div class="full-item"><b>Premium RGB:</b> Taśmy wielokolorowe do instalacji dekoracyjnych.</div>
+                <div class="full-item"><b>Premium RGBW:</b> Połączenie światła białego z kolorami RGB.</div>
+                <div class="full-item"><b>Premium RGBCCT:</b> Pełna paleta RGB + regulacja temperatury bieli.</div>
+                <div class="full-item"><b>Premium S-Shape:</b> Elastyczna taśma umożliwiająca gięcie w poziomie
+                    (reklama, litery 3D).</div>
             </div>
 
-            <h3 style="margin-top:80px;">Logistyka i Bezpieczeństwo</h3>
-            <p>Dostępność rolek: 5m, 10m, 50m, 100m oraz cięcie z metra. Zabezpieczenia:</p>
+            <h3>Taśmy COB (Chip On Board)</h3>
+            <p>Technologia COB pozwala uzyskać idealnie jednolitą linię światła. Diody są pokryte warstwą luminoforu,
+                dzięki czemu: nie widać pojedynczych punktów, światło jest gładkie i jednolite.</p>
             <div class="grid">
-                <div class="box"><b>LAKIER OCHRONNY (IP54):</b> Kurz, wilgoć, utlenianie.</div>
-                <div class="box"><b>KOSZULKA SILIKONOWA (IP68):</b> Pełna woda. Instalacje zewnętrzne.</div>
-                <div class="box"><b>PREMIUM RANGE:</b> RGB, RGBW, RGBCCT, S-Shape (gięte).</div>
+                <div class="box"><b>COB MONO:</b> 2700K – 6500K // 320 – 528 LED/m.</div>
+                <div class="box"><b>COB CCT:</b> Regulacja temperatury bieli (2700K – 6500K).</div>
+                <div class="box"><b>COB RGB / RGB+CCT:</b> Wielokolorowe z jednolitą linią.</div>
+                <div class="box"><b>COB Nano IP67:</b> Wodoodporne (Nano powłoka nie żółknie).</div>
+                <div class="box" style="grid-column: span 2;"><b>COB DIGITAL:</b> Taśmy programowalne (animacje
+                    świetlne, efekt płynącej wody).</div>
+            </div>
+
+            <h3 style="margin-top:100px;">Logistyka i wygoda instalatora</h3>
+            <p>Taśmy dostępne są w rolkach: 5 metrów, 10 metrów, 50 metrów, 100 metrów oraz cięte z metra.
+                Zabezpieczenia:</p>
+            <div class="grid">
+                <div class="box"><b>Lakier ochronny (IP54):</b> Kurz, wilgoć, utlenianie.</div>
+                <div class="box"><b>Koszulka silikonowa (IP68):</b> Pełna ochrona przed wodą i pyłem. Instalacje
+                    zewnętrzne.</div>
+            </div>
+
+            <div class="kb-block"
+                style="background:var(--prescot-orange); color:black; margin-top:100px; text-align: center;">
+                <h2 style="color:black; font-size: 4rem;">PODSUMOWANIE</h2>
+                <p style="color:black; font-weight: 700;">Taśmy Prescot tworzą jedną z najbardziej rozbudowanych ofert
+                    na rynku. Obejmują taśmy profesjonalne, specjalistyczne, COB oraz rozwiązania RGB i CCT. W
+                    połączeniu z profilami KLUŚ, zasilaczami Scharfer i sterowaniem MiBoxer, pozwalają budować
+                    kompletne, profesjonalne systemy oświetleniowe LED.</p>
             </div>
         </div>
 
         <div class="footer">
-            <div class="logo-box" style="justify-content: center; font-size: 1.5rem;">PRESCOT <span>LED</span></div>
-            <p style="opacity: 0.6; margin-top: 10px;">&copy; 2026 Centralne Systemy Szkoleniowe Prescot LED Giżycko.
+            <div class="logo-box" style="justify-content: center; font-size: 1.8rem;">PRESCOT <span>LED</span></div>
+            <p style="opacity: 0.5; margin-top: 20px;">&copy; 2026 Centralne Systemy Szkoleniowe Prescot LED Giżycko.
             </p>
-            <div class="mono">KB-CORE v3.0 // UNIFIED_BRANDING_ACTIVE</div>
+            <div class="mono-stat">KB-CORE v3.0 // UNIFIED_BRANDING // FULL_TEXT_REPLICATION_OK</div>
         </div>
 
     </div>
