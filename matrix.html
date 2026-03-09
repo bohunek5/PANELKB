@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Deep Matrix Columns 3D — Zosia</title>
+    <style>
+        body,
+        html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background: #000201;
+        }
+
+        #status {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            background: rgba(0, 8, 4, 0.9);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            padding: 12px 24px;
+            border-radius: 40px;
+            border: 1px solid rgba(0, 255, 100, 0.15);
+            font-family: 'Inter', sans-serif;
+            font-size: 11px;
+            color: rgba(0, 255, 100, 0.4);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            transition: 0.5s;
+            pointer-events: none;
+        }
+
+        #status.speaking {
+            border-color: rgba(0, 255, 100, 0.4);
+            color: #00ff8c;
+        }
+    </style>
+    <script type="importmap">
+  {
+    "imports": {
+      "three": "https://unpkg.com/three@0.160.0/build/three.module.js"
+    }
+  }
+</script>
+</head>
+
+<body>
+    <div id="status">
+        <div class="dot" style="width:7px; height:7px; border-radius:50%; background:#00220a;"></div>
+        <span id="statusLabel">ZOSIA MATRIX COLUMNS</span>
+    </div>
+
+    <script type="module">
+        import * as THREE from 'three';
+
+        let scene, camera, renderer, columns = [];
+        let isSpeaking = false;
+        let clock = new THREE.Clock();
+
+        const charset = "日Hｱｲｳｴｵｶｷｸｹｺｻｼｽｾｿﾀﾁﾂﾃﾄﾅﾆﾇﾈﾉﾊﾋﾌﾍﾎﾏﾐﾑﾒﾓﾔﾕﾖﾗﾘﾙﾚﾛﾜﾝ23456789ZOSIA";
+
+        function init() {
+            scene = new THREE.Scene();
+            camera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 0.1, 1000);
+            camera.position.set(0, 5, 15);
+
+            renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+            document.body.appendChild(renderer.domElement);
+
+            // --- COLUMN SYSTEM ---
+            const colCount = 60; // Total vertical columns
+            const textures = [];
+            for (let i = 0; i < 40; i++) {
+                const canvas = document.createElement('canvas');
+                const ctx = canvas.getContext('2d');
+                canvas.width = 64; canvas.height = 64;
+                ctx.fillStyle = 'white';
+                ctx.font = 'bold 50px monospace';
+                ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+                ctx.fillText(charset[Math.floor(Math.random() * charset.length)], 32, 32);
+                textures.push(new THREE.CanvasTexture(canvas));
+            }
+
+            for (let i = 0; i < colCount; i++) {
+                const r = 2 + Math.random() * 10;
+                const a = Math.random() * Math.PI * 2;
+                const x = Math.cos(a) * r;
+                const z = Math.sin(a) * r;
+
+                const symbolsInCol = 15 + Math.floor(Math.random() * 20);
+                const colSymbols = [];
+
+                for (let j = 0; j < symbolsInCol; j++) {
+                    const material = new THREE.SpriteMaterial({
+                        map: textures[Math.floor(Math.random() * textures.length)],
+                        color: 0x00ff80,
+                        transparent: true,
+                        opacity: 0.2 + Math.random() * 0.5
+                    });
+                    const sprite = new THREE.Sprite(material);
+                    sprite.position.x = x;
+                    sprite.position.z = z;
+                    sprite.position.y = (j / symbolsInCol) * 20 - 10;
+                    sprite.scale.set(0.35, 0.35, 1);
+                    scene.add(sprite);
+
+                    colSymbols.push({
+                        mesh: sprite,
+                        offsetY: sprite.position.y,
+                        speed: 0.02 + Math.random() * 0.03
+                    });
+                }
+
+                columns.push({
+                    x: x, z: z,
+                    radius: r,
+                    angle: a,
+                    symbols: colSymbols,
+                    vibrateOffset: Math.random() * Math.PI * 2
+                });
+            }
+
+            window.addEventListener('resize', onWindowResize);
+        }
+
+        function onWindowResize() {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        }
+
+        async function checkVoice() {
+            try {
+                const r = await fetch('http://127.0.0.1:7777/speaking');
+                const data = await r.json();
+                isSpeaking = data.speaking;
+                const st = document.getElementById('status');
+                const dot = st.querySelector('.dot');
+                if (isSpeaking) {
+                    st.classList.add('speaking');
+                    dot.style.background = "#00ff8c";
+                    dot.style.boxShadow = "0 0 15px #00ff8c";
+                } else {
+                    st.classList.remove('speaking');
+                    dot.style.background = "#00220a";
+                    dot.style.boxShadow = "none";
+                }
+            } catch (e) { }
+        }
+        setInterval(checkVoice, 150);
+
+        function animate() {
+            requestAnimationFrame(animate);
+            const delta = clock.getElapsedTime();
+
+            columns.forEach((col, idx) => {
+                const time = delta * 0.4;
+                const vibX = Math.sin(time * 3 + col.vibrateOffset) * (isSpeaking ? 0.6 : 0.08);
+                const vibZ = Math.cos(time * 3 + col.vibrateOffset) * (isSpeaking ? 0.6 : 0.08);
+
+                col.symbols.forEach((s) => {
+                    // 1. VERTICAL FLOW
+                    s.mesh.position.y += s.speed;
+                    if (s.mesh.position.y > 10) s.mesh.position.y = -10;
+
+                    // 2. COLUMN POSITIONING
+                    const colorPos = (s.mesh.position.y + 10) / 20;
+                    let targetHue, targetSat, targetLight;
+
+                    if (colorPos < 0.5) {
+                        targetHue = 0.35; targetSat = 1.0;
+                        targetLight = THREE.MathUtils.lerp(0.2, 0.5, colorPos * 2);
+                    } else {
+                        targetHue = THREE.MathUtils.lerp(0.35, 0.45, (colorPos - 0.5) * 2);
+                        targetSat = 0.8; targetLight = THREE.MathUtils.lerp(0.5, 0.7, (colorPos - 0.5) * 2);
+                    }
+
+                    if (isSpeaking) {
+                        const wave = Math.sin(delta * 5 - col.radius * 0.7);
+                        const expansion = 1 + (wave * 0.25) + 0.3;
+
+                        s.mesh.position.x = Math.cos(col.angle) * col.radius * expansion + vibX;
+                        s.mesh.position.z = Math.sin(col.angle) * col.radius * expansion + vibZ;
+
+                        const flash = Math.max(0, Math.sin(delta * 8 + col.vibrateOffset));
+                        s.mesh.material.color.setHSL(targetHue, targetSat, targetLight + flash * 0.35);
+                        s.mesh.material.opacity = 0.6 + flash * 0.4;
+                        s.mesh.scale.set(0.45, 0.45, 1);
+                    } else {
+                        s.mesh.position.x = THREE.MathUtils.lerp(s.mesh.position.x, Math.cos(col.angle) * col.radius + vibX, 0.05);
+                        s.mesh.position.z = THREE.MathUtils.lerp(s.mesh.position.z, Math.sin(col.angle) * col.radius + vibZ, 0.05);
+                        s.mesh.material.color.setHSL(targetHue, targetSat, targetLight);
+                        s.mesh.material.opacity = THREE.MathUtils.lerp(s.mesh.material.opacity, 0.3, 0.1);
+                        s.mesh.scale.set(0.35, 0.35, 1);
+                    }
+                });
+            });
+
+            camera.position.x = Math.sin(delta * 0.15) * 2;
+            camera.lookAt(0, 0, 0);
+
+            renderer.render(scene, camera);
+        }
+
+        init();
+        animate();
+    </script>
+</body>
+
+</html>
