@@ -141,23 +141,28 @@
 
         async function checkVoice() {
             try {
-                const r = await fetch('http://127.0.0.1:7777/speaking');
+                // 1. TRY LOCAL BRIDGE (PREMIUM - LOCAL MAC)
+                const r = await fetch('http://127.0.0.1:7777/speaking', { signal: AbortSignal.timeout(500) });
                 const data = await r.json();
                 isSpeaking = data.speaking;
-                const st = document.getElementById('status');
-                const dot = st.querySelector('.dot');
-                if (isSpeaking) {
-                    st.classList.add('speaking');
-                    dot.style.background = "#00ff8c";
-                    dot.style.boxShadow = "0 0 15px #00ff8c";
-                } else {
-                    st.classList.remove('speaking');
-                    dot.style.background = "#00220a";
-                    dot.style.boxShadow = "none";
-                }
-            } catch (e) { }
+            } catch (e) {
+                // 2. FALLBACK TO BROWSER NATIVE (MOBILE / GITHUB PAGES)
+                isSpeaking = window.speechSynthesis.speaking;
+            }
+
+            const st = document.getElementById('status');
+            const dot = st.querySelector('.dot');
+            if (isSpeaking) {
+                st.classList.add('speaking');
+                dot.style.background = "#00ff8c";
+                dot.style.boxShadow = "0 0 15px #00ff8c";
+            } else {
+                st.classList.remove('speaking');
+                dot.style.background = "#00220a";
+                dot.style.boxShadow = "none";
+            }
         }
-        setInterval(checkVoice, 150);
+        setInterval(checkVoice, 100);
 
         function animate() {
             requestAnimationFrame(animate);
