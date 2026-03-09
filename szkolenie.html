@@ -12,18 +12,18 @@
         :root {
             --prescot-navy: #001f3f;
             --prescot-orange: #ff5d00;
-            --bg-gray: #f2f2f2;
+            --bg-gray: #f8f8f8;
             --white: #ffffff;
             --text-dark: #333333;
-            --radius: 15px;
+            --radius: 12px;
 
-            /* 300% Scale Factors */
-            --font-xl: clamp(5rem, 15vw, 10rem);
-            --font-lg: clamp(3rem, 10vw, 6rem);
-            --font-md: clamp(2rem, 5vw, 4rem);
-            --font-base: clamp(1.8rem, 3vw, 2.5rem);
-            --padding-xl: 15rem;
-            --padding-lg: 8rem;
+            /* Normalized Scale (3x smaller than monumental) */
+            --font-xl: clamp(2.2rem, 5vw, 3.5rem);
+            --font-lg: clamp(1.6rem, 4vw, 2.2rem);
+            --font-md: clamp(1.3rem, 3vw, 1.8rem);
+            --font-base: 1.15rem;
+            --padding-xl: 5rem;
+            --padding-lg: 3rem;
         }
 
         * {
@@ -37,23 +37,23 @@
             font-family: 'Outfit', sans-serif;
             background-color: var(--bg-gray);
             color: var(--text-dark);
-            line-height: 1.8;
+            line-height: 1.7;
             padding-bottom: var(--padding-xl);
         }
 
         /* Top Bar Logo Section */
         .top-logo-section {
             background: var(--white);
-            padding: 6rem 0;
+            padding: 2.5rem 0;
             text-align: center;
-            border-bottom: 2px solid #e5e5e5;
+            border-bottom: 1px solid #e5e5e5;
         }
 
         .logo-text {
             font-family: 'Montserrat', sans-serif;
-            font-size: 5rem;
+            font-size: 2.2rem;
             font-weight: 900;
-            letter-spacing: -2px;
+            letter-spacing: -1px;
             color: black;
             text-transform: uppercase;
         }
@@ -64,15 +64,15 @@
 
         /* Main Container */
         .container {
-            max-width: 1800px;
+            max-width: 1300px;
             margin: 0 auto;
-            padding: 0 4rem;
+            padding: 0 2rem;
         }
 
         /* Instruction Header */
         .instruction-header {
             text-align: center;
-            padding: var(--padding-lg) 0;
+            padding: 4rem 0 2rem;
         }
 
         h1 {
@@ -80,14 +80,14 @@
             font-size: var(--font-xl);
             font-weight: 900;
             text-transform: uppercase;
-            letter-spacing: -4px;
-            line-height: 0.9;
-            margin-bottom: 3rem;
+            letter-spacing: -1.5px;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
         }
 
         .header-line {
-            width: 80%;
-            height: 10px;
+            width: 120px;
+            height: 6px;
             background: var(--prescot-orange);
             margin: 0 auto;
         }
@@ -95,30 +95,40 @@
         /* White Instruction Cards */
         .card {
             background: var(--white);
-            border-radius: 40px;
+            border-radius: 20px;
             padding: var(--padding-lg);
-            margin-top: 6rem;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.05);
+            margin-top: 2.5rem;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.03);
             text-align: center;
         }
 
         .spis-tresci {
             font-family: 'Montserrat', sans-serif;
             text-transform: uppercase;
-            letter-spacing: 4px;
+            letter-spacing: 2px;
             font-weight: 800;
-            font-size: 3rem;
-            margin-bottom: 4rem;
+            font-size: 1.4rem;
+            margin-bottom: 2rem;
+            color: var(--prescot-navy);
         }
 
         .spis-list {
             list-style: none;
-            font-size: var(--font-base);
+            font-size: 1.05rem;
             font-weight: 600;
+            text-align: left;
+            max-width: 600px;
+            margin: 0 auto;
         }
 
         .spis-list li {
-            margin-bottom: 1.5rem;
+            margin-bottom: 0.8rem;
+            padding-bottom: 0.8rem;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .spis-list li:last-child {
+            border: none;
         }
 
         /* Section Headings */
@@ -127,77 +137,84 @@
             font-size: var(--font-lg);
             font-weight: 900;
             text-transform: uppercase;
-            margin-bottom: 4rem;
-            border-bottom: 8px solid var(--prescot-orange);
+            margin-bottom: 2.5rem;
+            border-bottom: 5px solid var(--prescot-orange);
             display: inline-block;
-            padding-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            color: var(--prescot-navy);
         }
 
         h3 {
             font-family: 'Montserrat', sans-serif;
             font-size: var(--font-md);
             font-weight: 800;
-            margin: 6rem 0 3rem;
+            margin: 3rem 0 1.5rem;
             color: var(--text-dark);
         }
 
         h4 {
-            font-size: 3rem;
+            font-size: 1.5rem;
             font-weight: 900;
             color: var(--prescot-orange);
-            margin-bottom: 2rem;
+            margin-bottom: 1rem;
             text-transform: uppercase;
         }
 
         /* Content Text */
         p {
             font-size: var(--font-base);
-            margin-bottom: 4rem;
-            max-width: 1400px;
+            margin-bottom: 1.5rem;
+            max-width: 1000px;
             margin-left: auto;
             margin-right: auto;
+            color: #555;
         }
 
         /* Instruction Lists */
         .instruction-list {
             list-style: none;
-            margin: 4rem 0;
+            margin: 2rem auto;
+            max-width: 900px;
+            text-align: left;
         }
 
         .instruction-list li {
             font-size: var(--font-base);
             font-weight: 500;
-            margin-bottom: 2rem;
+            margin-bottom: 1rem;
             position: relative;
+            padding-left: 40px;
         }
 
         .instruction-list.checklist li::before {
             content: '✔';
             color: var(--prescot-orange);
-            margin-right: 20px;
+            position: absolute;
+            left: 0;
             font-weight: 900;
         }
 
         .instruction-list.bullet li::before {
             content: '•';
             color: var(--prescot-orange);
-            margin-right: 20px;
+            position: absolute;
+            left: 0;
             font-weight: 900;
-            font-size: 4rem;
-            vertical-align: middle;
-            line-height: 0;
+            font-size: 2rem;
+            line-height: 1;
         }
 
         /* Highlighting Labels */
         .label {
             background: #f8f8f8;
-            border: 2px solid #ddd;
-            padding: 2rem 4rem;
-            border-radius: 20px;
+            border: 1px solid #ddd;
+            padding: 0.8rem 1.5rem;
+            border-radius: 10px;
             display: inline-block;
             font-weight: 800;
-            margin: 1rem;
+            margin: 0.5rem;
             text-transform: uppercase;
+            font-size: 0.9rem;
         }
 
         .orange-label {
@@ -209,27 +226,32 @@
         /* Specialized Modules Grid */
         .modules-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
-            gap: 4rem;
-            margin-top: 6rem;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
         }
 
         .module-box {
             background: #fafafa;
-            border: 4px solid #eee;
-            padding: 5rem;
-            border-radius: 30px;
+            border: 1px solid #eee;
+            padding: 2.5rem;
+            border-radius: 15px;
             text-align: left;
+        }
+
+        .module-box p {
+            margin: 0;
+            font-size: 1rem;
         }
 
         .tech-specs {
             background: var(--prescot-navy);
             color: white;
-            padding: 4rem;
-            border-radius: 25px;
-            margin-top: 3rem;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-top: 1.5rem;
             font-family: 'Montserrat', sans-serif;
-            font-size: 1.8rem;
+            font-size: 0.9rem;
         }
 
         .tech-specs b {
@@ -238,23 +260,33 @@
 
         footer {
             text-align: center;
-            padding: var(--padding-lg) 0;
+            padding: 4rem 0;
             font-weight: 800;
-            font-size: 2rem;
-            color: #999;
+            font-size: 1.1rem;
+            color: #bbb;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
-        @media (max-width: 1024px) {
+        @media (max-width: 768px) {
             .container {
-                padding: 0 2rem;
+                padding: 0 1.5rem;
             }
 
             .card {
-                padding: 4rem 2rem;
+                padding: 2rem 1rem;
             }
 
             h1 {
-                font-size: 4rem;
+                font-size: 2.2rem;
+            }
+
+            h2 {
+                font-size: 1.6rem;
+            }
+
+            .modules-grid {
+                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -269,7 +301,7 @@
     <div class="container">
 
         <header class="instruction-header">
-            <h1>OGÓLNE WARUNKI SZKOLENIA – SYSTEMY LED</h1>
+            <h1>OGÓLNE WARUNKI SZKOLENIA<br>SYSTEMY LED</h1>
             <div class="header-line"></div>
         </header>
 
@@ -281,7 +313,7 @@
                 <li>2. Produkcja, logistyka i dystrybucja strategiczna</li>
                 <li>3. Przewagi rynkowe i customizacja</li>
                 <li>4. Fundament technologiczny taśm LED (Power PCB 4oz)</li>
-                <li>5. Seleckja diod Tier 1 i technologia OneCut</li>
+                <li>5. Selekcja diod Tier 1 i technologia OneCut</li>
                 <li>6. Przegląd flagowych serii produktów (Delux, Premium)</li>
                 <li>7. Specjalistyczne rozwiązania (Bread, True Color)</li>
                 <li>8. Innowacje COB (Mono, RGB, Digital)</li>
@@ -303,9 +335,7 @@
                 <li>niezależność od globalnych zatorów w transporcie z Azji,</li>
                 <li>możliwość customizacji: cięcie taśm na wymiar, lutowanie przewodów, konfekcjonowanie gotowych
                     modułów montażowych.</li>
-                <li>jakością produktów</li>
-                <li>dostępnością magazynową</li>
-                <li>terminowością dostaw</li>
+                <li>najwyższa jakość produktów, stała dostępność magazynowa i terminowość dostaw.</li>
             </ul>
 
             <h3>DYSTRYBUCJA STRATEGICZNA</h3>
@@ -329,17 +359,17 @@
                 </div>
             </div>
 
-            <h3 style="margin-top:10rem;">PEŁNE SYSTEMY OŚWIETLENIOWE</h3>
+            <h3 style="margin-top:4rem;">PEŁNE SYSTEMY OŚWIETLENIOWE</h3>
             <p>Dzięki temu Prescot oferuje kompletne rozwiązania obejmujące:</p>
-            <div style="margin: 4rem 0;">
+            <div style="margin: 2rem 0;">
                 <span class="label">źródło światła</span>
                 <span class="label">zasilanie</span>
                 <span class="label">sterowanie</span>
                 <span class="label">system montażowy</span>
             </div>
 
-            <p style="font-weight: 800; font-size: 3rem;">Prescot nie jest klasyczną hurtownią. Firma działa jako
-                pracownia projektowa oświetlenia.</p>
+            <p style="font-weight: 800; font-size: 1.4rem; color: var(--prescot-navy);">Prescot nie jest klasyczną
+                hurtownią. Firma działa jako pracownia projektowa oświetlenia.</p>
         </div>
 
         <!-- SEKCJA 2 -->
@@ -367,8 +397,8 @@
             <p>Dzięki temu instalator otrzymuje produkt gotowy do montażu, co przyspiesza instalację, minimalizuje
                 ryzyko błędów i poprawia estetykę wykonania.</p>
 
-            <h3 style="margin-top:8rem;">SEKTORY DOCELOWE</h3>
-            <div style="margin: 4rem 0;">
+            <h3 style="margin-top:4rem;">SEKTORY DOCELOWE</h3>
+            <div style="margin: 2rem 0;">
                 <span class="label">MEBLARSTWO</span>
                 <span class="label">ARCHITEKTURA</span>
                 <span class="label">JACHTY</span>
@@ -388,24 +418,26 @@
             <p>W topowych seriach Prescot stosowane jest PCB 4oz (czterouncjowa warstwa miedzi). Pełni ona dwie
                 krytyczne funkcje:</p>
             <div class="modules-grid">
-                <div class="module-box" style="border-left: 15px solid var(--prescot-orange);">
+                <div class="module-box" style="border-left: 8px solid var(--prescot-orange);">
                     <h4>Autostrada energetyczna</h4>
                     <p>Minimalizuje spadki napięcia na długich odcinkach taśmy.</p>
                 </div>
-                <div class="module-box" style="border-left: 15px solid var(--prescot-orange);">
+                <div class="module-box" style="border-left: 8px solid var(--prescot-orange);">
                     <h4>Radiator termiczny</h4>
                     <p>Skutecznie odprowadza ciepło z diod LED, co znacząco wydłuża ich żywotność.</p>
                 </div>
             </div>
-            <p style="margin-top: 5rem;">W praktyce: taśma świeci równomiernie, diody nie tracą jasności, a instalacja
+            <p style="margin-top: 2rem;">W praktyce: taśma świeci równomiernie, diody nie tracą jasności, a instalacja
                 działa stabilnie przez lata.</p>
 
             <h3>SELEKCJA DIOD (BINNING) TIER 1</h3>
             <p>Prescot stosuje emitery od globalnych producentów klasy Tier 1: <b>OSRAM, Cree, Lumileds</b>. Pozwala to
                 uzyskać skuteczność świetlną nawet ponad <b>200 lm/W</b>.</p>
-            <div class="label">Niższe zużycie energii</div>
-            <div class="label">Wyższa wydajność</div>
-            <div class="label">Stabilna barwa</div>
+            <div style="margin: 1.5rem 0;">
+                <span class="label">Niższe zużycie energii</span>
+                <span class="label">Wyższa wydajność</span>
+                <span class="label">Stabilna barwa</span>
+            </div>
 
             <h3>TECHNOLOGIA ONECUT</h3>
             <p>Możliwość cięcia co 1 cm. Pozwala to idealnie dopasować długość, uniknąć ciemnych stref i zachować
@@ -418,7 +450,7 @@
 
             <div class="modules-grid">
                 <div class="module-box">
-                    <span class="label orange-label">GWARANCJA 7 LAT</span>
+                    <span class="label orange-label" style="font-size: 0.7rem;">GWARANCJA 7 LAT</span>
                     <h4>SERIA DELUX PRO</h4>
                     <p>PCB 4oz // 126 lub 180 LED/m. Idealnie jednolita linia światła. Meblarstwo premium, architektura
                         wnętrz.</p>
@@ -448,17 +480,17 @@
                     <p>Najwyższe oddawanie barw. Galerie sztuki, butiki premium, salony jubilerskie.</p>
                 </div>
 
-                <div class="module-box" style="background: #fff7f0; border-color: var(--prescot-orange);">
-                    <span class="label orange-label">PIEKARNICTWO</span>
+                <div class="module-box" style="background: #fffafa; border-color: var(--prescot-orange);">
+                    <span class="label orange-label" style="font-size: 0.7rem;">PIEKARNICTWO</span>
                     <h4>PRESCOT BREAD</h4>
                     <p>Barwa 2500K – „Złota skórka”. Podkreśla brązy i złoto wypieków. Warianty 70 LED/m i 160 LED/m.
                     </p>
                 </div>
             </div>
 
-            <h3 style="margin-top:10rem;">UNIWERSALNA SERIA PREMIUM (5 LAT GWARANCJI)</h3>
+            <h3 style="margin-top:4rem;">UNIWERSALNA SERIA PREMIUM (5 LAT GWARANCJI)</h3>
             <p>Szeroki zakres: Mono, RGB, RGBW, RGBCCT. Dostępne 12V i 24V.</p>
-            <ul class="instruction-list checklist" style="text-align: left; display: inline-block;">
+            <ul class="instruction-list checklist">
                 <li><b>Premium RGBW:</b> Biel + Kolory</li>
                 <li><b>Premium RGBCCT:</b> Regulacja temperatury bieli</li>
                 <li><b>Premium S-Shape:</b> Gięcie w poziomie (reklama, litery 3D)</li>
@@ -485,7 +517,7 @@
                 </div>
             </div>
 
-            <h3 style="margin-top:10rem;">ZABEZPIECZENIA I LOGISTYKA</h3>
+            <h3 style="margin-top:4rem;">ZABEZPIECZENIA I LOGISTYKA</h3>
             <p>Rolki 5m, 10m, 50m, 100m oraz cięcie z metra.</p>
             <div class="modules-grid">
                 <div class="module-box">
@@ -502,13 +534,14 @@
         <!-- PODSUMOWANIE -->
         <div class="card" style="background: var(--prescot-navy); color: white;">
             <h2 style="color: white; border-color: var(--prescot-orange);">PODSUMOWANIE</h2>
-            <p style="color: #ccc; font-size: 3rem; font-weight: 800;">W połączeniu z profilami KLUŚ, zasilaczami
+            <p style="color: #ccc; font-size: 1.4rem; font-weight: 700;">W połączeniu z profilami KLUŚ, zasilaczami
                 Scharfer i sterowaniem MiBoxer budujemy kompletne systemy LED.</p>
-            <div class="label orange-label" style="font-size: 3rem; padding: 4rem;">EKOSYSTEM PRESCOT LED</div>
+            <div class="label orange-label" style="font-size: 1.2rem; padding: 1.2rem 2.5rem;">EKOSYSTEM PRESCOT LED
+            </div>
         </div>
 
         <footer>
-            &copy; 2026 PRESCOT LED // DOKUMENTACJA SZKOLENIOWA // KB-CORE v4.0
+            &copy; 2026 PRESCOT LED // DOKUMENTACJA SZKOLENIOWA // KB-CORE v5.0
         </footer>
 
     </div>
