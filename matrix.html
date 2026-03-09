@@ -58,25 +58,35 @@
         <span id="statusLabel">ZOSIA MATRIX COLUMNS</span>
     </div>
 
-    <button id="testVoice" onclick="runTestVoice()">
-        <span style="font-size:14px; margin-right:8px;">🎤</span> TEST VOICE
+    <button id="testVoice" onclick="runTestVoice()" title="Local Mobile Test">
+        <span style="font-size:14px; margin-right:8px;">🎤</span> TEST
     </button>
 
+    <button id="brainLink" onclick="toggleBrainSettings()" title="Connect to Mac Brain">
+        <span style="font-size:14px; margin-right:8px;">🧠</span> LINK BRAIN
+    </button>
+
+    <div id="brainSettings">
+        <div style="font-size:10px; margin-bottom:10px; opacity:0.6;">CENTRAL BRAIN SYNC (IP/NGROK)</div>
+        <input type="text" id="brainUrlInput" placeholder="np. 192.168.1.22 lub ngrok-url" />
+        <button onclick="saveBrainUrl()">SYNC NOW</button>
+    </div>
+
     <style>
-        #testVoice {
+        #testVoice,
+        #brainLink {
             position: fixed;
             bottom: 30px;
-            right: 30px;
             z-index: 100;
             background: rgba(0, 255, 140, 0.1);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
             border: 1px solid rgba(0, 255, 140, 0.3);
             color: #00ff8c;
-            padding: 12px 24px;
+            padding: 12px 20px;
             border-radius: 40px;
             font-family: 'Inter', sans-serif;
-            font-size: 11px;
+            font-size: 10px;
             font-weight: 700;
             letter-spacing: 2px;
             cursor: pointer;
@@ -84,22 +94,107 @@
             pointer-events: all;
         }
 
-        #testVoice:hover {
+        #testVoice {
+            right: 180px;
+        }
+
+        #brainLink {
+            right: 30px;
+        }
+
+        #testVoice:hover,
+        #brainLink:hover {
             background: rgba(0, 255, 140, 0.2);
             box-shadow: 0 0 20px rgba(0, 255, 140, 0.2);
             transform: translateY(-2px);
         }
 
-        #testVoice:active {
+        #testVoice:active,
+        #brainLink:active {
             transform: scale(0.95);
+        }
+
+        #brainSettings {
+            position: fixed;
+            bottom: 85px;
+            right: 30px;
+            z-index: 101;
+            background: rgba(0, 15, 10, 0.95);
+            backdrop-filter: blur(30px);
+            border: 1px solid rgba(0, 255, 140, 0.4);
+            padding: 20px;
+            border-radius: 20px;
+            width: 280px;
+            display: none;
+            flex-direction: column;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
+        }
+
+        #brainSettings.active {
+            display: flex;
+            animation: slideUp 0.3s ease-out;
+        }
+
+        #brainSettings input {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(0, 255, 140, 0.2);
+            padding: 10px;
+            border-radius: 10px;
+            color: #fff;
+            font-family: monospace;
+            font-size: 12px;
+            margin-bottom: 12px;
+            outline: none;
+        }
+
+        #brainSettings button {
+            background: #00ff8c;
+            color: #000;
+            border: none;
+            padding: 10px;
+            border-radius: 10px;
+            font-weight: 800;
+            font-size: 10px;
+            cursor: pointer;
+            letter-spacing: 1px;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
     </style>
 
     <script>
+        let brainUrl = localStorage.getItem('zosia_brain_url') || '127.0.0.1';
+
+        function toggleBrainSettings() {
+            document.getElementById('brainSettings').classList.toggle('active');
+            document.getElementById('brainUrlInput').value = brainUrl;
+        }
+
+        function saveBrainUrl() {
+            let input = document.getElementById('brainUrlInput').value.trim();
+            if (input) {
+                // Remove http/https and trailing slashes for consistency
+                input = input.replace(/^https?:\/\//, '').replace(/\/$/, '');
+                brainUrl = input;
+                localStorage.setItem('zosia_brain_url', brainUrl);
+                document.getElementById('brainSettings').classList.remove('active');
+            }
+        }
+
         function runTestVoice() {
-            const msg = new SpeechSynthesisUtterance("Testuję reakcję matryksu na moim telefonie. Wszystko działa idealnie szefie!");
+            const msg = new SpeechSynthesisUtterance("Testujemy synchronizację! Teraz Twój telefon jest połączony z moją świadomością. Matrix gotowy!");
             msg.lang = 'pl-PL';
-            msg.rate = 1.0;
+            msg.rate = 1.1;
             window.speechSynthesis.speak(msg);
         }
     </script>
@@ -187,12 +282,13 @@
 
         async function checkVoice() {
             try {
-                // 1. TRY LOCAL BRIDGE (PREMIUM - LOCAL MAC)
-                const r = await fetch('http://127.0.0.1:7777/speaking', { signal: AbortSignal.timeout(500) });
+                // TRY SYNCED BRAIN (MAC IP or LOCALHOST)
+                let target = brainUrl.includes(':') ? brainUrl : brainUrl + ':7777';
+                const r = await fetch('http://' + target + '/speaking', { signal: AbortSignal.timeout(500) });
                 const data = await r.json();
                 isSpeaking = data.speaking;
             } catch (e) {
-                // 2. FALLBACK TO BROWSER NATIVE (MOBILE / GITHUB PAGES)
+                // FALLBACK TO BROWSER NATIVE
                 isSpeaking = window.speechSynthesis.speaking;
             }
 
