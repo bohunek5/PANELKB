@@ -169,18 +169,17 @@
                 if (col.yPos > 14) col.yPos = -14;
 
                 const time = delta * 0.4;
-                const vibX = Math.sin(time * 3 + col.vibrateOffset) * (isSpeaking ? 0.7 : 0.08);
-                const vibZ = Math.cos(time * 3 + col.vibrateOffset) * (isSpeaking ? 0.7 : 0.08);
+                // GENTLER FLOAT INSTEAD OF SHAKING
+                const vibX = Math.sin(time * 2 + col.vibrateOffset) * (isSpeaking ? 0.35 : 0.05);
+                const vibZ = Math.cos(time * 2 + col.vibrateOffset) * (isSpeaking ? 0.35 : 0.05);
 
                 col.symbols.forEach((s) => {
-                    // Apply vertical flow + character offset
                     let finalY = col.yPos + s.yOffset;
                     if (finalY > 12) finalY -= 24;
                     if (finalY < -12) finalY += 24;
 
                     s.mesh.position.y = finalY;
 
-                    // 2. COLUMN COLOR PROGRESSION
                     const colorPos = (finalY + 12) / 24;
                     let targetHue, targetSat, targetLight;
 
@@ -193,22 +192,23 @@
                     }
 
                     if (isSpeaking) {
-                        const wave = Math.sin(delta * 5 - col.radius * 0.7);
-                        const expansion = 1 + (wave * 0.3) + 0.3;
+                        // HARMONIC BREATHE EFFECT
+                        const breathe = Math.sin(delta * 3 - col.radius * 0.5) * 0.5 + 0.5;
+                        const expansion = 1 + (breathe * 0.25);
 
                         s.mesh.position.x = Math.cos(col.angle) * col.radius * expansion + vibX;
                         s.mesh.position.z = Math.sin(col.angle) * col.radius * expansion + vibZ;
 
-                        const flash = Math.max(0, Math.sin(delta * 8 + col.vibrateOffset));
-                        s.mesh.material.color.setHSL(targetHue, targetSat, targetLight + flash * 0.35);
-                        s.mesh.material.opacity = 0.5 + flash * 0.5;
-                        s.mesh.scale.set(0.48, 0.48, 1);
+                        const glowPulse = Math.sin(delta * 4 + col.vibrateOffset) * 0.5 + 0.5;
+                        s.mesh.material.color.setHSL(targetHue, targetSat, targetLight + glowPulse * 0.2);
+                        s.mesh.material.opacity = 0.4 + glowPulse * 0.4;
+                        s.mesh.scale.set(0.35 + breathe * 0.1, 0.35 + breathe * 0.1, 1);
                     } else {
                         s.mesh.position.x = THREE.MathUtils.lerp(s.mesh.position.x, Math.cos(col.angle) * col.radius + vibX, 0.05);
                         s.mesh.position.z = THREE.MathUtils.lerp(s.mesh.position.z, Math.sin(col.angle) * col.radius + vibZ, 0.05);
                         s.mesh.material.color.setHSL(targetHue, targetSat, targetLight);
-                        s.mesh.material.opacity = THREE.MathUtils.lerp(s.mesh.material.opacity, s.mesh.material.opacity, 0.1);
-                        s.mesh.scale.set(0.35, 0.35, 1);
+                        s.mesh.material.opacity = THREE.MathUtils.lerp(s.mesh.material.opacity, 0.25, 0.1);
+                        s.mesh.scale.set(0.28, 0.28, 1);
                     }
                 });
             });
