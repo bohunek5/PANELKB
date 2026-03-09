@@ -58,6 +58,52 @@
         <span id="statusLabel">ZOSIA MATRIX COLUMNS</span>
     </div>
 
+    <button id="testVoice" onclick="runTestVoice()">
+        <span style="font-size:14px; margin-right:8px;">🎤</span> TEST VOICE
+    </button>
+
+    <style>
+        #testVoice {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 100;
+            background: rgba(0, 255, 140, 0.1);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(0, 255, 140, 0.3);
+            color: #00ff8c;
+            padding: 12px 24px;
+            border-radius: 40px;
+            font-family: 'Inter', sans-serif;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            cursor: pointer;
+            transition: 0.3s;
+            pointer-events: all;
+        }
+
+        #testVoice:hover {
+            background: rgba(0, 255, 140, 0.2);
+            box-shadow: 0 0 20px rgba(0, 255, 140, 0.2);
+            transform: translateY(-2px);
+        }
+
+        #testVoice:active {
+            transform: scale(0.95);
+        }
+    </style>
+
+    <script>
+        function runTestVoice() {
+            const msg = new SpeechSynthesisUtterance("Testuję reakcję matryksu na moim telefonie. Wszystko działa idealnie szefie!");
+            msg.lang = 'pl-PL';
+            msg.rate = 1.0;
+            window.speechSynthesis.speak(msg);
+        }
+    </script>
+
     <script type="module">
         import * as THREE from 'three';
 
